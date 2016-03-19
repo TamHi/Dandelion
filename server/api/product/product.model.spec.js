@@ -1,5 +1,4 @@
 var Product = require('./product.model.js');
-var should = require('should');
 
 describe('Product', function() {
   beforeEach(function(done){

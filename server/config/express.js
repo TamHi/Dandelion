@@ -19,6 +19,8 @@ import passport from 'passport';
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
 import mongoose from 'mongoose';
+import should from 'should';
+
 var mongoStore = connectMongo(session);
 
 export default function(app) {
