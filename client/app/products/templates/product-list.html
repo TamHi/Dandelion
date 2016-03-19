@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="row">
+		<h1>Products</h1>
+		<div 	class="col-sm-6 col-md-4"
+					ng-show="products.length < 1">
+			No products to show.
+		</div>
+		<a ui-sref="newProduct">New Product</a>
+	</div>
+
+	<div class="row">
+		<div 	class="col-sm-6 col-md-4"
+					ng-repeat="product in products">
+			<div class="thumbnail">
+				<img 	src="http://placehold.it/300x200" alt="{{product.title}}">
+				<div class="caption">
+					<h3>{{ product.title }}</h3>
+					<p>{{ product.description | limitTo: 100 }} ...</p>
+					<p>{{ product.price | currency }}</p>
+					<p>
+						<a href="#" class="btn btn-primary" role="button">Buy</a>
+						<a 	class="btn btn-default" role="button" 
+								ui-sref="viewProduct({id: product._id})">
+							Details	
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
