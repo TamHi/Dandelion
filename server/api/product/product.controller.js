@@ -11,6 +11,18 @@
 
 import _ from 'lodash';
 import Product from './product.model';
+import path from 'path';
+
+function saveFile(res, file) {
+  return function(entity) {
+    var newPath = '/assets/uploads/' + path.basename(file.path);
+    entity.imageUrl = newPath;
+    return entity.saveAsync().spread(function(updated) {
+      console.log(updated);
+      return updated;
+    });
+  }
+}
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -98,5 +110,19 @@ export function destroy(req, res) {
   Product.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
+    .catch(handleError(res));
+}
+
+// Uploads a new Product's image in the DB
+export function upload(req, res) {
+  var file = req.files.file;
+  if(!file) {
+    return handleError(res)('File not provided');
+  }
+
+  Product.findByIdAsync(req.params.id)
+    .then(handleEntityNotFound(res))
+    .then(saveFile(res, file))
+    .then(respondWithResult(res))
     .catch(handleError(res));
 }

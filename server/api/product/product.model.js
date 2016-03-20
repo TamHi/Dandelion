@@ -17,7 +17,12 @@ var ProductSchema = new mongoose.Schema({
 		type: Number,
 		default: 1	
 	},
-	description: String
+	description: String,
+  imageBin: {
+    data: Buffer,
+    contentType: String
+  },
+  imageUrl: String
 });
 
 export default mongoose.model('Product', ProductSchema);

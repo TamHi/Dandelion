@@ -1,6 +1,7 @@
 'use strict';
 
-var errorHandler;
+var errorHandler,
+    uploadHander;
 
 angular.module('dandelionApp')
   .controller('ProductsCtrl', function ($scope, Product) {
@@ -27,7 +28,7 @@ angular.module('dandelionApp')
     };
   })
 
-  .controller('ProductEditCtrl', function($scope, $state, $stateParams, Product) {
+  .controller('ProductEditCtrl', function($scope, $state, $stateParams, Product, Upload, $timeout) {
   	$scope.product = Product.get({id: $stateParams.id});
 
   	$scope.editProduct = function() {
@@ -35,10 +36,40 @@ angular.module('dandelionApp')
         $state.go('viewProduct', {id: value._id});
       }, errorHandler($scope));
   	};
+
+    $scope.upload = uploadHander($scope, Upload, $timeout);
   });
 
 errorHandler = function(scope) {
   return function error(httpResponse) {
     $scope.errors = httpResponse;
   };
-}
+};
+
+uploadHander = function($scope, Upload, $timeout) {
+  return function(file) {
+    if(file && !file.$error) {
+      $scope.file = file;
+
+      file.upload = Upload.upload({
+        url: 'api/products/'+$scope.product._id+'/upload',
+        file: file
+      })
+      
+      file.upload.then(function(res) {
+        $timeout(function() {
+          file.result = res.data;
+        });
+      }, function(res) {
+        if(res.status > 0) {
+          console.log(res.status + ':' + res.data);
+          errorHandler($scope)(res.status + ':' + res.data);
+        }
+      });
+
+      file.upload.progress(function(evt) {
+        file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+      })
+    }
+  }
+};
