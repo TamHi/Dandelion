@@ -24,7 +24,9 @@ describe('Service: Product', function () {
 
   describe('#index', function() {
     it('should fetch products with HTTP GET request', function() {
-      $httpBackend.expectGET('/api/products').respond(validAttributes);
+      $httpBackend
+        .expectGET('/api/products')
+        .respond(validAttributes);
       Product.query(function (products) {
         expect(products).to.equal(validAttributes);
       });

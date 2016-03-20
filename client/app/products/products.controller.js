@@ -42,7 +42,7 @@ angular.module('dandelionApp')
 
 errorHandler = function(scope) {
   return function error(httpResponse) {
-    $scope.errors = httpResponse;
+    scope.errors = httpResponse;
   };
 };
 
