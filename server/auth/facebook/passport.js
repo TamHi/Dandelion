@@ -28,7 +28,12 @@ export function setup(User, config) {
           facebook: profile._json
         });
         user.saveAsync()
-          .then(user => done(null, user))
+          .then(saveResult => {
+            // mongoose save returns (err, obj, numaffected)
+            // bluebird only expects 2 arguments so it wraps the extras in an array
+            var user = saveResult[0];
+            done(null, user)
+          })
           .catch(err => done(err));
       })
       .catch(err => done(err));
