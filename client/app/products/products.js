@@ -26,6 +26,20 @@ angular.module('dandelionApp')
       .state('checkout', {
         url: '/checkout',
         templateUrl: 'app/products/templates/products-checkout.html',
-        controller: 'ProductCheckoutCtrl'
+        controller: 'ProductCheckoutCtrl',
+        resolve: {
+          token: ($q, $http) => {
+            var deferred = $q.defer();
+
+            $http.get('/api/braintree/client_token')
+              .then((res) => {
+                deferred.resolve(res.data)
+              })
+              .catch(() => {
+                console.log('Errors');
+              })
+            return deferred.promise;
+          }
+        }
       });
   });

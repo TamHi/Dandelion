@@ -6,6 +6,12 @@
 'use strict';
 import User from '../api/user/user.model';
 import Product from '../api/product/product.model';
+import Order from '../api/order/order.model';
+
+Order.find({}).removeAsync()
+  .then(() => {
+    console.log('Finished remove orders');
+  });
 
 User.find({}).removeAsync()
   .then(() => {

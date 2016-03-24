@@ -38,7 +38,51 @@ angular.module('dandelionApp')
   	};
 
     $scope.upload = uploadHander($scope, Upload, $timeout);
-  });
+  })
+
+  .controller('ProductCheckoutCtrl', function($scope, $http, $state, ngCart, token) {
+
+    braintree.setup(token, "dropin", {
+      container: "payment-form",
+      onPaymentMethodReceived: function(payload) {
+        angular.merge(payload, ngCart.toObject());
+        payload.total = payload.totalCost;
+        console.log(payload);
+
+        $http.post('/api/orders', payload)
+          .then(function (res) {
+            console.log(res.data);
+            ngCart.empty(true);
+            $state.go('products');
+          })
+          .catch(function(res) {
+            $scope.errors = res;
+          })
+      }
+    });
+
+    console.log(ngCart);
+    // $scope.errors = '';
+    // console.log(ngCart.toObject());
+
+    // $scope.paymentOptions = {
+    //   onPaymentMethodReceived: function(payload) {
+    //     angular.merge(payload, ngCart.toObject());
+    //     payload.total = payload.totalCost;
+    //     console.log(payload);
+
+    //     $http.post('/api/orders', payload)
+    //       .then(function (res) {
+    //         console.log(res.data);
+    //         ngCart.empty(true);
+    //         $state.go('products');
+    //       })
+    //       .catch(function(res) {
+    //         $scope.errors = res;
+    //       })
+    //   }
+    // }
+  })
 
 errorHandler = function(scope) {
   return function error(httpResponse) {
