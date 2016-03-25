@@ -1,33 +1,27 @@
 'use strict';
 
-class LoginController {
-  constructor(Auth, $state) {
-    this.user = {};
-    this.errors = {};
-    this.submitted = false;
-
-    this.Auth = Auth;
-    this.$state = $state;
-  }
-
-  login(form) {
-    this.submitted = true;
-
-    if (form.$valid) {
-      this.Auth.login({
-        email: this.user.email,
-        password: this.user.password
-      })
-      .then(() => {
-        // Logged in, redirect to home
-        this.$state.go('main');
-      })
-      .catch(err => {
-        this.errors.other = err.message;
-      });
-    }
-  }
-}
-
 angular.module('dandelionApp')
-  .controller('LoginController', LoginController);
+  .controller('LoginController', function($rootScope, $scope, Auth, $state, cart) {
+    $scope.user = {};
+    $scope.errors = {};
+    $scope.submitted = false;
+
+    $scope.login = function(form) {
+      $scope.submitted = true;
+
+      if(form.$valid) {
+        Auth.login({
+          email: $scope.user.email,
+          password: $scope.user.password
+        })
+        .then(() => {
+
+          // Logged in, redirect to home
+          $state.go('main');
+        })
+        .catch(err => {
+          $scope.errors.other = err.message;
+        });
+      }
+    }
+  });

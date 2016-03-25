@@ -12,18 +12,18 @@
 		<div 	class="col-sm-6 col-md-4"
 					ng-repeat="product in products">
 			<div class="thumbnail">
-				<img 	ng-src="{{product.imageUrl}}" alt="{{product.title}}">
+				<img 	ng-src="{{product.imageUrl}}" alt="{{product.name}}">
 				<div class="caption">
-					<h3>{{ product.title }}</h3>
+					<h3>{{ product.name }}</h3>
 					<p>{{ product.description | limitTo: 100 }} ...</p>
 					<p>{{ product.price | currency }}</p>
 					<p>
 						<ngcart-addtocart id="{{product._id}}" 
 															quantity="1" 
-															quantity-max="9" 
-															name="{{product.title}}" 
+															quantity-max="{{product.stock}}" 
+															name="{{product.name}}" 
 															price="{{product.price}}" 
-															template-url="components/ngcart/addtocart.html"data="product">
+															template-url="components/ngcart/addtocart.html">
 							Add to Cart
 						</ngcart-addtocart>
 						<a 	class="btn btn-default" role="button" 

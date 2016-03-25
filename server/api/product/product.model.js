@@ -3,10 +3,14 @@
 var mongoose = require('bluebird').promisifyAll(require('mongoose'));
 
 var ProductSchema = new mongoose.Schema({
-  title: {
+  name: {
   	type: String,
   	required: true,
   	trim: true
+  },
+  sku: {
+    type: String,
+    unique: true
   },
   price: {
   	type: Number,

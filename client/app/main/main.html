@@ -12,7 +12,7 @@
       <h1 class="page-header">Featured products:</h1>
       <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="product in main.products">
         <li>
-          <a ui-sref="viewProduct({id: product._id})" tooltip="{{product.description}}">{{ product.title }} -
+          <a ui-sref="viewProduct({id: product._id})" tooltip="{{product.description}}">{{ product.name }} -
             <span class="text-muted">{{ product.price | currency }}</span>
           </a>
         </li>

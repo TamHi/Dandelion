@@ -1,6 +1,7 @@
 'use strict';
 
 import User from './user.model';
+import Cart from '../cart/cart.model';
 import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
@@ -43,6 +44,11 @@ export function create(req, res, next) {
       var token = jwt.sign({ _id: user._id }, config.secrets.session, {
         expiresIn: 60 * 60 * 5
       });
+
+      Cart.createAsync({
+        _id: user._id
+      });
+
       res.json({ token });
     })
     .catch(validationError(res));

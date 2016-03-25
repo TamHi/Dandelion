@@ -68,7 +68,8 @@ export function index(req, res) {
 
 // Gets a single Cart from the DB
 export function show(req, res) {
-  Cart.findByIdAsync(req.params.id)
+  Cart.findById(req.params.id)
+    .populate('items.product')
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
@@ -86,11 +87,17 @@ export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  Cart.findByIdAsync(req.params.id)
-    .then(handleEntityNotFound(res))
-    .then(saveUpdates(req.body))
+  Cart.updateAsync({_id: req.params.id}, {
+    items: req.body.items
+  })
     .then(respondWithResult(res))
     .catch(handleError(res));
+
+  // Cart.findByIdAsync(req.params.id)
+  //   .then(handleEntityNotFound(res))
+  //   .then(saveUpdates(req.body))
+  //   .then(respondWithResult(res))
+  //   .catch(handleError(res));
 }
 
 // Deletes a Cart from the DB

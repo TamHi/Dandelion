@@ -13,11 +13,13 @@ angular.module('dandelionApp')
         url: '/logout?referrer',
         referrer: 'main',
         template: '',
-        controller: function($state, Auth) {
+        controller: function($state, Auth, ngCart, cart) {
           var referrer = $state.params.referrer ||
                           $state.current.referrer ||
                           'main';
           Auth.logout();
+          cart.unsubscribe();
+          ngCart.empty(true);
           $state.go(referrer);
         }
       })
