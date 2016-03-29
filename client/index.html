@@ -70,6 +70,7 @@
       <script src="https://js.braintreegateway.com/js/braintree-2.21.0.min.js"></script>
       <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
       <script src="https://code.angularjs.org/1.4.9/i18n/angular-locale_vi-vn.js"></script>
+      <script src="assets/js/angularSlideables.js"></script>
       <!-- <script src="assets/js/jquery.js"></script> -->
       <!-- <script src="assets/js/bootstrap.min.js"></script> -->
       <!-- <script src="assets/js/jquery.scrollUp.min.js"></script> -->
@@ -80,10 +81,13 @@
     <!-- build:js(.tmp) app/app.js -->
       <script src="app/app.js"></script>
       <!-- injector:js -->
-      <script src="app/admin/admin.module.js"></script>
       <script src="components/auth/auth.module.js"></script>
+      <script src="app/admin/admin.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="components/auth/interceptor.service.js"></script>
+      <script src="app/account/account/edit/edit.controller.js"></script>
+      <script src="app/account/account/orders/orders.controller.js"></script>
+      <script src="app/account/login/login.controller.js"></script>
+      <script src="app/account/signup/signup.controller.js"></script>
       <script src="app/admin/admin.controller.js"></script>
       <script src="app/account/account.js"></script>
       <script src="app/admin/admin.router.js"></script>
@@ -94,9 +98,9 @@
       <script src="app/products/products.controller.js"></script>
       <script src="app/products/products.js"></script>
       <script src="app/products/products.service.js"></script>
-      <script src="app/account/settings/settings.controller.js"></script>
+      <script src="app/account/account/account.controller.js"></script>
       <script src="components/auth/auth.service.js"></script>
-      <script src="app/account/login/login.controller.js"></script>
+      <script src="components/auth/interceptor.service.js"></script>
       <script src="components/auth/router.decorator.js"></script>
       <script src="components/auth/user.service.js"></script>
       <script src="components/footer/footer.directive.js"></script>
@@ -110,7 +114,7 @@
       <script src="components/sidebar/sidebar.directive.js"></script>
       <script src="components/sidebar/sidebar.service.js"></script>
       <script src="components/socket/socket.service.js"></script>
-      <script src="app/account/signup/signup.controller.js"></script>
+      <script src="app/account/account/addresses/addresses.controller.js"></script>
       <script src="components/util/util.service.js"></script>
       <!-- endinjector -->
     <!-- endbuild -->

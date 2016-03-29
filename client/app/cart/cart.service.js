@@ -37,7 +37,7 @@ angular.module('dandelionApp')
     	},
 
     	fetchUserCart: function() {
-    		console.log(ngCart.getItems());
+    		// console.log(ngCart.getItems());
     		// If cart is empty => Fetch from DB
     		if(ngCart.getItems().length === 0) {
     			console.log('Enter empty');
@@ -47,7 +47,8 @@ angular.module('dandelionApp')
 	    				var items = res.data.items;
 	    			
 	    				angular.forEach(items, function(value) {
-	    					ngCart.addItem(value.product._id, value.product.name, value.product.price, value.quantity);
+                console.log(value);
+	    					ngCart.addItem(value.product._id, value.product.name, value.product.price, value.quantity, value.product);
 	    				});
 
 	    				deferred.resolve();

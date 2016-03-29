@@ -1,11 +1,16 @@
 'use strict';
 
-class SettingsController {
+class EditController {
   constructor(Auth) {
     this.errors = {};
     this.submitted = false;
 
     this.Auth = Auth;
+    this.user = {
+      name: Auth.getCurrentUser().name,
+      email: Auth.getCurrentUser().email
+    };
+    this.changePwd = false;
   }
 
   changePassword(form) {
@@ -26,4 +31,4 @@ class SettingsController {
 }
 
 angular.module('dandelionApp')
-  .controller('SettingsController', SettingsController);
+  .controller('EditController', EditController);

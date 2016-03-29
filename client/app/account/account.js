@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('dandelionApp')
-  .config(function($stateProvider) {
+  .config(function($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider
+      .when('/account', 'account/edit');
+
     $stateProvider
       .state('login', {
         url: '/login',
@@ -29,13 +33,35 @@ angular.module('dandelionApp')
         controller: 'SignupController',
         controllerAs: 'vm'
       })
-      .state('settings', {
-        url: '/settings',
-        templateUrl: 'app/account/settings/settings.html',
-        controller: 'SettingsController',
+      .state('account', {
+        url: '/account',
+        abstract: true,
+        templateUrl: 'app/account/account/account.html',
+        controller: 'AccountController',
         controllerAs: 'vm',
         authenticate: true
-      });
+      })
+        .state('account.edit', {
+          url: '/edit',
+          templateUrl: 'app/account/account/edit/edit.html',
+          controller: 'EditController',
+          controllerAs: 'vm',
+          authenticate: true
+        })
+        .state('account.addresses', {
+          url: '/addresses',
+          templateUrl: 'app/account/account/addresses/addresses.html',
+          controller: 'AddressesController',
+          controllerAs: 'vm',
+          authenticate: true
+        })
+        .state('account.orders', {
+          url: '/orders',
+          templateUrl: 'app/account/account/orders/orders.html',
+          controller: 'OrdersController',
+          controllerAs: 'vm',
+          authenticate: true
+        });
   })
   .run(function($rootScope) {
     $rootScope.$on('$stateChangeStart', function(event, next, nextParams, current) {

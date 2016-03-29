@@ -62,9 +62,9 @@
               <li ng-show="isLoggedIn()" class="dropdown">
                 <a href="#">Tài khoản<i class="fa fa-angle-down"></i></a>
                 <ul role="menu" class="sub-menu">
-                  <li><a href="shop.html">Thông tin tài khoản</a></li>
-                  <li><a href="product-details.html">Sổ địa chỉ</a></li> 
-                  <li><a href="checkout.html">Đơn hàng</a></li>
+                  <li><a ui-sref="account.edit">Thông tin tài khoản</a></li>
+                  <li><a ui-sref="account.addresses">Sổ địa chỉ</a></li> 
+                  <li><a ui-sref="account.orders">Đơn hàng</a></li>
                 </ul>
               </li> 
               <!-- <li ng-show="isLoggedIn()" ui-sref-active="active"><a ui-sref="settings"><span class="glyphicon glyphicon-cog"></span></a></li> -->

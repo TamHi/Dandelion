@@ -79,6 +79,7 @@ a#scrollUp i{
 
 // Component styles are injected through grunt
 // injector
+@import 'account/account.scss';
 @import 'admin/admin.scss';
 @import 'main/main.scss';
 @import 'products/products.scss';
