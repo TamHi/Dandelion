@@ -12,7 +12,8 @@ angular.module('dandelionApp', [
   'ui.bootstrap',
   'validation.match',
   'ngFileUpload',
-  'ngCart'
+  'ngCart',
+  'ngAside'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

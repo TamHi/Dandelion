@@ -11,12 +11,16 @@ angular.module('dandelionApp')
     $scope.order = function(predicate) {
       $scope.predicate = predicate;
     };
+
+    $scope.$on('catalog-search', function(event, args) {
+      $scope.catalog = args;
+    })
   })
 
-  .controller('ProductCatalogCtrl', function($scope, $stateParams, Product) {
-    $scope.products = Product.catalog({id: $stateParams.slug});
-    $scope.query = $stateParams.slug;
-  })
+  // .controller('ProductCatalogCtrl', function($scope, $stateParams, Product) {
+  //   $scope.products = Product.catalog({id: $stateParams.slug});
+  //   $scope.query = $stateParams.slug;
+  // })
 
   .controller('ProductViewCtrl', function($scope, $state, $stateParams, Product) {
 
