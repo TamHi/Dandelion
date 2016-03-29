@@ -1,7 +1,83 @@
-<div class="navbar navbar-default navbar-static-top" ng-controller="NavbarController">
+<header id="header">
+
+  <div class="header_top">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 ">
+          <div class="contactinfo">
+            <ul class="nav nav-pills">
+              <li><a href=""><i class="fa fa-phone"></i> +84 909 347 694</a></li>
+              <li><a href=""><i class="fa fa-envelope"></i> builevutam4494@gmail.com</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="social-icons pull-right">
+            <ul class="nav navbar-nav">
+              <li><a href="https://www.facebook.com/tam.builevu"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="https://github.com/TamHi"><i class="fa fa-github"></i></a></li>
+              <li><a href="https://plus.google.com/u/0/113161648173584959596"><i class="fa fa-google-plus"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="header-middle">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="logo pull-left">
+            <a ui-sref="main"><img src="assets/images/logo.png" alt="Dandelion" /></a>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="mainmenu pull-left">
+            <ul class="nav navbar-nav collapse navbar-collapse">
+              <li>
+                <a href="index.html" class="active">Home</a>
+              </li>
+              <li class="dropdown">
+                <a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                <ul role="menu" class="sub-menu">
+                  <li><a href="shop.html">Áo</a></li>
+                  <li><a href="product-details.html">Quần</a></li> 
+                  <li><a href="checkout.html">Phụ kiện</a></li>
+                </ul>
+              </li> 
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-sm-8">
+          <div class="shop-menu pull-right">
+            <ul class="nav navbar-nav">
+              <li><a href=""><i class="fa fa-user"></i> Account</a></li>
+              <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+              <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+              <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- <div class="navbar navbar-default navbar-static-top">
   <div class="container">
     <div class="navbar-header">
-      <button class="navbar-toggle" type="button" ng-click="nav.isCollapsed = !nav.isCollapsed">
+      <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -9,20 +85,29 @@
       </button>
       <a href="/" class="navbar-brand">dandelion</a>
     </div>
-    <div collapse="nav.isCollapsed" class="navbar-collapse collapse" id="navbar-main">
+    <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
-        <li ng-repeat="item in nav.menu" ui-sref-active="active">
+        <li ng-repeat="item in menu" ui-sref-active="active">
             <a ui-sref="{{item.state}}">{{item.title}}</a>
         </li>
-        <li ng-show="nav.isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
+        <li ng-show="isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
       </ul>
 
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon"><span class="fa fa-search"></span></span>
+            <input id="searchBox" type="text" class="form-control input-large" placeholder="Search" ng-model="searchTerm" ng-change="search()" ng-focus="redirect()">
+          </div>
+        </div>
+      </form>
+
       <ul class="nav navbar-nav navbar-right">
-        <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Sign up</a></li>
-        <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Login</a></li>
-        <li ng-show="nav.isLoggedIn()"><p class="navbar-text">Hello {{ nav.getCurrentUser().name }}</p> </li>
-        <li ng-show="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="settings"><span class="glyphicon glyphicon-cog"></span></a></li>
-        <li ng-show="nav.isLoggedIn()"><a ui-sref="logout">Logout</a></li>
+        <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Sign up</a></li>
+        <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Login</a></li>
+        <li ng-show="isLoggedIn()"><p class="navbar-text">Hello {{ getCurrentUser().name }}</p> </li>
+        <li ng-show="isLoggedIn()" ui-sref-active="active"><a ui-sref="settings"><span class="glyphicon glyphicon-cog"></span></a></li>
+        <li ng-show="isLoggedIn()"><a ui-sref="logout">Logout</a></li>
         <li>
           <a ui-sref="checkout">
             <ngcart-summary template-url="components/ngcart/summary.html"></ngcart-summary>
@@ -31,4 +116,4 @@
       </ul>
     </div>
   </div>
-</div>
+</div> -->

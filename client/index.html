@@ -17,6 +17,7 @@
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
       <link rel="stylesheet" href="app/app.css">
+      <link rel="stylesheet" href="assets/css/responsive.css">
       <!-- injector:css -->
       <!-- endinjector -->
     <!-- endbuild -->
@@ -61,17 +62,26 @@
       <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
       <script src="bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
       <script src="bower_components/ngCart/dist/ngCart.js"></script>
+      <script src="bower_components/angular-animate/angular-animate.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
       <script src="https://js.braintreegateway.com/js/braintree-2.21.0.min.js"></script>
+      <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+      <script src="https://code.angularjs.org/1.4.9/i18n/angular-locale_vi-vn.js"></script>
+      <!-- <script src="assets/js/jquery.js"></script> -->
+      <!-- <script src="assets/js/bootstrap.min.js"></script> -->
+      <!-- <script src="assets/js/jquery.scrollUp.min.js"></script> -->
+      <!-- <script src="assets/js/price-range.js"></script> -->
+      <!-- <script src="assets/js/jquery.prettyPhoto.js"></script> -->
+      <!-- <script src="assets/js/main.js"></script> -->
     <!-- endbuild -->
     <!-- build:js(.tmp) app/app.js -->
       <script src="app/app.js"></script>
       <!-- injector:js -->
-      <script src="components/auth/auth.module.js"></script>
       <script src="app/admin/admin.module.js"></script>
+      <script src="components/auth/auth.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="app/account/signup/signup.controller.js"></script>
+      <script src="components/auth/interceptor.service.js"></script>
       <script src="app/admin/admin.controller.js"></script>
       <script src="app/account/account.js"></script>
       <script src="app/admin/admin.router.js"></script>
@@ -82,9 +92,9 @@
       <script src="app/products/products.controller.js"></script>
       <script src="app/products/products.js"></script>
       <script src="app/products/products.service.js"></script>
-      <script src="app/account/login/login.controller.js"></script>
+      <script src="app/account/settings/settings.controller.js"></script>
       <script src="components/auth/auth.service.js"></script>
-      <script src="components/auth/interceptor.service.js"></script>
+      <script src="app/account/login/login.controller.js"></script>
       <script src="components/auth/router.decorator.js"></script>
       <script src="components/auth/user.service.js"></script>
       <script src="components/footer/footer.directive.js"></script>
@@ -94,8 +104,11 @@
       <script src="components/navbar/navbar.directive.js"></script>
       <script src="components/oauth-buttons/oauth-buttons.controller.js"></script>
       <script src="components/oauth-buttons/oauth-buttons.directive.js"></script>
+      <script src="components/sidebar/sidebar.controller.js"></script>
+      <script src="components/sidebar/sidebar.directive.js"></script>
+      <script src="components/sidebar/sidebar.service.js"></script>
       <script src="components/socket/socket.service.js"></script>
-      <script src="app/account/settings/settings.controller.js"></script>
+      <script src="app/account/signup/signup.controller.js"></script>
       <script src="components/util/util.service.js"></script>
       <!-- endinjector -->
     <!-- endbuild -->

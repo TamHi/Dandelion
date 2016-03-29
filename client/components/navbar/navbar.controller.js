@@ -1,21 +1,29 @@
-'use strict';
-
-class NavbarController {
-  //start-non-standard
-  menu = [{
-    'title': 'Home',
-    'state': 'main'
-  }];
-
-  isCollapsed = true;
-  //end-non-standard
-
-  constructor(Auth) {
-    this.isLoggedIn = Auth.isLoggedIn;
-    this.isAdmin = Auth.isAdmin;
-    this.getCurrentUser = Auth.getCurrentUser;
-  }
-}
-
 angular.module('dandelionApp')
-  .controller('NavbarController', NavbarController);
+  .controller('NavbarCtrl', function ($scope, Auth, $rootScope, $state, $window, $timeout) {
+    $scope.menu = [{
+      'title': 'Home',
+      'state': 'main'
+    }, {
+      'title': 'Products',
+      'state': 'products'
+    }];
+
+    $scope.isCollapsed = true;
+    $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.isAdmin = Auth.isAdmin;
+    $scope.getCurrentUser = Auth.getCurrentUser;
+
+    $scope.search = function () {
+      $rootScope.$broadcast('search:term', $scope.searchTerm);
+    };
+
+    $scope.redirect = function () {
+      $state.go('products');
+      // timeout makes sure that it is invoked after any other event has been triggered.
+      $timeout(function () {
+        // focus on search box
+        var searchBox = $window.document.getElementById('searchBox');
+        if(searchBox){ searchBox.focus(); }
+      })
+    };
+  });

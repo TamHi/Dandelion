@@ -6,6 +6,16 @@ var errorHandler,
 angular.module('dandelionApp')
   .controller('ProductsCtrl', function ($scope, Product) {
     $scope.products = Product.query();
+
+    $scope.predicate = 'slug';
+    $scope.order = function(predicate) {
+      $scope.predicate = predicate;
+    };
+  })
+
+  .controller('ProductCatalogCtrl', function($scope, $stateParams, Product) {
+    $scope.products = Product.catalog({id: $stateParams.slug});
+    $scope.query = $stateParams.slug;
   })
 
   .controller('ProductViewCtrl', function($scope, $state, $stateParams, Product) {

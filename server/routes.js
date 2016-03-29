@@ -9,6 +9,7 @@ import path from 'path';
 
 export default function(app) {
   // Insert routes below
+  app.use('/api/catalogs', require('./api/catalog'));
   app.use('/api/carts', require('./api/cart'));
   app.use('/api/orders', require('./api/order'));
   app.use('/api/braintree', require('./api/braintree'));

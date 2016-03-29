@@ -11,6 +11,7 @@
 
 import _ from 'lodash';
 import Product from './product.model';
+import Catalog from '../catalog/catalog.model';
 import path from 'path';
 
 function saveFile(res, file) {
@@ -28,6 +29,7 @@ function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
     if (entity) {
+      // console.log(entity);
       res.status(statusCode).json(entity);
     }
   };
@@ -71,9 +73,31 @@ function handleError(res, statusCode) {
   };
 }
 
+// export function catalog(req, res) {
+//   Catalog.findOneAsync({ slug: req.params.slug })
+//     .then(function(catalog) {
+//       var catalog_ids = [catalog._id].concat(catalog.children);
+//       return Product
+//         .find({'categories': { $in: catalog_ids } })
+//         .populate('categories')
+//         .then(respondWithResult(res))
+//         .catch(handleError(res));
+//     });
+// }
+
+// export function search(req, res) {
+//   Product
+//     .find({ $text: { $search: req.params.term }})
+//     .populate('categories')
+//     .execAsync()
+//     .then(respondWithResult(res))
+//     .catch(handleError(res));
+// };
+
 // Gets a list of Products
 export function index(req, res) {
-  Product.findAsync()
+  Product.find()
+    .populate('categories')
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

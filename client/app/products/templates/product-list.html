@@ -1,15 +1,100 @@
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Products <small>{{query}}</small></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+    	<sidebar></sidebar>
+    </div>
+    <div class="col-md-9" ng-show="products.length < 1"> No products to show.</div>
+
+    <div class="col-md-9" ng-repeat="product in products">
+
+      <div class="thumbnail productbox">
+        <div class="productdescription">
+          <a ui-sref="viewProduct({id: product._id})">
+            <img src="{{product.imageUrl}}" alt="{{product.title}}" class="img-responsive">
+            <div class="producttitle">{{product.title}}</div>
+          </a>
+
+          <p>{{product.description}}</p>
+        </div>
+
+        <div class="productprice">
+          <div class="pull-right">
+            <ngcart-addtocart id="{{product._id}}" name="{{product.title}}" price="{{product.price}}" template-url="components/ngcart/addtocart.html" data="product">BUY</ngcart-addtocart>
+          </div>
+          <div class="pricetext">{{product.price | currency }}</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div> -->
 <div class="container">
 	<div class="row">
-		<h1>Products</h1>
-		<div 	class="col-sm-6 col-md-4"
-					ng-show="products.length < 1">
-			No products to show.
-		</div>
-		<a ui-sref="newProduct">New Product</a>
-	</div>
+		
+		<!-- Category -->
+		<div class="col-md-3">
+    	<sidebar></sidebar>
+    </div>
+		
+		<!-- Products -->
+    <div class="col-md-9 padding-right">
+			<h2 class="title text-center">Sản phẩm</h2>
+	    <div class="row toolbox">
+	    	<div class="col-sm-4">
+					<div class="search_box pull-left">
+						<input type="text" placeholder="Search" ng-model="query"/>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="sort-group btn-group pull-right" data-toggle="buttons">
+						<label class="btn" ng-click="order('price')">
+					    <input type="radio" name="options" id="option1" autocomplete="off"> Giá thấp
+					  </label>
+					  <label class="btn" ng-click="order('-price')">
+					    <input type="radio" name="options" id="option2" autocomplete="off"> Giá cao
+					  </label>
+					  <label class="btn" ng-click="order('slug')">
+					    <input type="radio" name="options" id="option3" autocomplete="off"> A - Z
+					  </label>
+					  <label class="btn" ng-click="order('-slug')">
+					    <input type="radio" name="options" id="option4" autocomplete="off"> Z - A
+					  </label>
+					</div>
+				</div>
+	    </div>
 
-	<div class="row">
-		<div 	class="col-sm-6 col-md-4"
+	    <div class="row">
+	    	<div class="features_items">
+					<div class="col-sm-4" ng-repeat="product in products | filter: query | orderBy:predicate">
+						<div class="product-image-wrapper">
+							<div class="single-products">
+								<div class="productinfo text-center">
+									<img src="{{product.imageUrl}}" alt="{{product.name}}" />
+									<h2>{{ product.price | currency : "VNĐ" : 0}}</h2>
+									<p>{{ product.name }}</p>
+									<!-- <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a> -->
+									<ngcart-addtocart id="{{product._id}}" 
+																		name="{{product.title}}" 
+																		price="{{product.price}}" 
+																		template-url="components/ngcart/addtocart.html" 
+																		data="product">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</ngcart-addtocart>
+								</div>
+							</div>
+						</div>
+					</div>
+	    	</div>
+	    </div>
+    </div>
+
+		<!-- <div 	class="col-sm-6 col-md-4"
 					ng-repeat="product in products">
 			<div class="thumbnail">
 				<img 	ng-src="{{product.imageUrl}}" alt="{{product.name}}">
@@ -33,6 +118,6 @@
 					</p>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </div>

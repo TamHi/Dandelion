@@ -1,0 +1,78 @@
+<!-- <div ng-controller="SidebarCtrl" class="sidebar">  
+	<ul class="nav nav-sidebar">    
+		<li ng-repeat="category in catalog" 
+				ng-class="{active: isActive(category.slug)}">      
+			<a ui-sref="productCatalog ({slug: category.slug})">{{category.name}}
+			</a>    
+		</li>  
+	</ul>
+</div> -->
+
+<div class="left-sidebar">
+	<h2>Category</h2>
+	<div class="panel-group category-products" id="accordian">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordian" href="#shirt">
+						<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+						Áo
+					</a>
+				</h4>
+			</div>
+			<div id="shirt" class="panel-collapse collapse">
+				<div class="panel-body">
+					<ul>
+						<li><a ui-sref="productCatalog ({slug: 'ao-thun'})">Áo thun </a></li>
+						<li><a ui-sref="productCatalog ({slug: 'ao-somi'})">Áo sơ mi </a></li>
+						<li><a ui-sref="productCatalog ({slug: 'ao-ba-lo'})">Áo ba lỗ </a></li>
+						<li><a ui-sref="productCatalog ({slug: 'ao-khoac'})">Áo khoác </a></li>
+						<li><a ui-sref="productCatalog ({slug: 'ao-vest'})">Áo Vest </a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordian" href="#pants">
+						<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+						Quần
+					</a>
+				</h4>
+			</div>
+			<div id="pants" class="panel-collapse collapse">
+				<div class="panel-body">
+					<ul>
+						<li><a ui-sref="productCatalog ({slug: 'quan-jean'})">Quần jean </a></li>
+						<li><a ui-sref="productCatalog ({slug: 'quan-kaki'})">Quần kaki </a></li>
+						<li><a ui-sref="productCatalog ({slug: 'quan-tay'})">Quần tây </a></li>
+						<li><a ui-sref="productCatalog ({slug: 'quan-short'})">Quần short </a></li>
+						<li><a ui-sref="productCatalog ({slug: 'quan-thun'})">Quần thun </a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordian" href="#accessory">
+						<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+						Phụ kiện
+					</a>
+				</h4>
+			</div>
+			<div id="accessory" class="panel-collapse collapse">
+				<div class="panel-body">
+					<ul>
+						<li><a ui-sref="productCatalog ({slug: 'giay-dep'})">Giày dép </a></li>
+						<li><a ui-sref="productCatalog ({slug: 'dong-ho'})">Đồng hồ </a></li>
+						<li><a ui-sref="productCatalog ({slug: 'mat-kinh'})">Mắt kính </a></li>
+						<li><a ui-sref="productCatalog ({slug: 'day-nich'})">Dây nịch </a></li>
+						<li><a ui-sref="productCatalog ({slug: 'tui-xach'})">Túi xách </a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

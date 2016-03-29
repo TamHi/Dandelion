@@ -23,6 +23,11 @@ angular.module('dandelionApp')
         templateUrl: 'app/products/templates/product-edit.html',
         controller: 'ProductEditCtrl'
       })
+      .state('productCatalog', {
+        url: '/products/:slug/catalog',
+        templateUrl: 'app/products//templates/product-list.html',
+        controller: 'ProductCatalogCtrl'
+      })
       .state('checkout', {
         url: '/checkout',
         templateUrl: 'app/products/templates/products-checkout.html',

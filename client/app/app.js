@@ -3,7 +3,7 @@
 angular.module('dandelionApp', [
   'dandelionApp.auth',
   'dandelionApp.admin',
-  'dandelionApp.constants',
+  'ngAnimate',
   'ngCookies',
   'ngResource',
   'ngSanitize',

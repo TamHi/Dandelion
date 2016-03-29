@@ -12,6 +12,7 @@ var ProductSchema = new mongoose.Schema({
     type: String,
     unique: true
   },
+  slug: String,
   price: {
   	type: Number,
   	required: true,
@@ -26,7 +27,17 @@ var ProductSchema = new mongoose.Schema({
     data: Buffer,
     contentType: String
   },
-  imageUrl: String
+  imageUrl: String,
+  categories: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Catalog',
+      index: true
+    }
+  ]
+}).index({
+  'title': 'text',
+  'description': 'text'
 });
 
 export default mongoose.model('Product', ProductSchema);
