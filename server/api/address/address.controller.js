@@ -11,6 +11,7 @@
 
 import _ from 'lodash';
 import Address from './address.model';
+import request from 'request';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -59,9 +60,51 @@ function handleError(res, statusCode) {
   };
 }
 
+// Gets a list of Cities
+export function city(req, res) {
+  var url = 'https://thongtindoanhnghiep.co/api/city';
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+
+      res.status(response.statusCode).send(body);
+    }
+  })
+}
+
+// Gets a list of districts
+export function district(req, res) {
+  var url = 'https://thongtindoanhnghiep.co/api/city/' + req.params.id + '/district';
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+
+      res.status(response.statusCode).send(body);
+    }
+  })
+}
+
+// Gets a list of districts
+export function ward(req, res) {
+  var url = 'https://thongtindoanhnghiep.co/api/district/' + req.params.id + '/ward';
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+
+      res.status(response.statusCode).send(body);
+    }
+  })
+}
+
 // Gets a list of Addresss
 export function index(req, res) {
   Address.findAsync()
+    // .populate('uid')
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
+// Gets a list of Addresss
+export function userAddress(req, res) {
+  console.log(req.user._id);
+  Address.findAsync({ uid: req.user._id })
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

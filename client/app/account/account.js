@@ -49,9 +49,23 @@ angular.module('dandelionApp')
           authenticate: true
         })
         .state('account.addresses', {
-          url: '/addresses',
-          templateUrl: 'app/account/account/addresses/addresses.html',
+          url: '/address',
+          templateUrl: 'app/account/account/addresses/list/list.html',
           controller: 'AddressesController',
+          controllerAs: 'vm',
+          authenticate: true
+        })
+        .state('account.createAddress', {
+          url: '/address/create',
+          templateUrl: 'app/account/account/addresses/create/create.html',
+          controller: 'CreateAddressesController',
+          controllerAs: 'vm',
+          authenticate: true
+        })
+        .state('account.editAddress', {
+          url: '/address/edit/:id',
+          templateUrl: 'app/account/account/addresses/edit/edit.html',
+          controller: 'EditAddressesController',
           controllerAs: 'vm',
           authenticate: true
         })

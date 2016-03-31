@@ -3,6 +3,7 @@
 import crypto from 'crypto';
 var mongoose = require('bluebird').promisifyAll(require('mongoose'));
 import {Schema} from 'mongoose';
+import Cart from '../cart/cart.model';
 
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 
@@ -104,6 +105,9 @@ var validatePresenceOf = function(value) {
  */
 UserSchema
   .pre('save', function(next) {
+    // Determine whether doc is new or already exist
+    this.wasNew = this.isNew;
+
     // Handle new/update passwords
     if (!this.isModified('password')) {
       return next();
@@ -127,6 +131,19 @@ UserSchema
         next();
       });
     });
+  });
+
+/**
+ * Post-save hook
+ */
+UserSchema
+  .post('save', function(doc) {
+    // If the doc is new => create a new cart for user
+    if(this.wasNew) {
+      Cart.createAsync({
+        _id: doc._id
+      });
+    }
   });
 
 /**

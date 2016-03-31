@@ -44,11 +44,6 @@ export function create(req, res, next) {
       var token = jwt.sign({ _id: user._id }, config.secrets.session, {
         expiresIn: 60 * 60 * 5
       });
-
-      Cart.createAsync({
-        _id: user._id
-      });
-
       res.json({ token });
     })
     .catch(validationError(res));
@@ -87,6 +82,7 @@ export function destroy(req, res) {
  */
 export function changePassword(req, res, next) {
   var userId = req.user._id;
+  console.log(req.body.id)
   var oldPass = String(req.body.oldPassword);
   var newPass = String(req.body.newPassword);
 

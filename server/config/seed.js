@@ -10,6 +10,7 @@ import Product from '../api/product/product.model';
 import Order from '../api/order/order.model';
 import Cart from '../api/cart/cart.model';
 import Catalog from '../api/catalog/catalog.model';
+import Address from '../api/address/address.model';
 
 var ao,
     aothun,
@@ -104,7 +105,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f01'),
           sku: 'MS001',
           name: 'Áo thun xám',
-          slug: "ao-thun-xam",
+          slug: 'ao-thun-xam',
           imageUrl: '/assets/uploads/aothun-1.jpg',
           price: 150000,
           stock: 10,
@@ -114,7 +115,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f02'),
           sku: 'MS002',
           name: 'Áo thun xanh',
-          slug: "ao-thun-xanh",
+          slug: 'ao-thun-xanh',
           imageUrl: '/assets/uploads/aothun-2.jpg',
           price: 150000,
           stock: 20,
@@ -124,7 +125,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f03'),
           sku: 'MS003',
           name: 'Áo sơ mi trắng',
-          slug: "ao-somi-trang",
+          slug: 'ao-somi-trang',
           imageUrl: '/assets/uploads/aosomi-1.jpg',
           price: 200000,
           stock: 10,
@@ -134,7 +135,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f04'),
           sku: 'MS004',
           name: 'Áo sơ mi xanh',
-          slug: "ao-somi-xanh",
+          slug: 'ao-somi-xanh',
           imageUrl: '/assets/uploads/aosomi-2.jpg',
           price: 200000,
           stock: 20,
@@ -144,7 +145,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f05'),
           sku: 'MS005',
           name: 'Áo ba lỗ xám',
-          slug: "ao-balo-xam",
+          slug: 'ao-balo-xam',
           imageUrl: '/assets/uploads/aobalo-1.jpg',
           price: 100000,
           stock: 10,
@@ -154,7 +155,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f06'),
           sku: 'MS006',
           name: 'Áo ba lỗ đen',
-          slug: "ao-balo-den",
+          slug: 'ao-balo-den',
           imageUrl: '/assets/uploads/aobalo-2.jpg',
           price: 100000,
           stock: 20,
@@ -164,7 +165,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f07'),
           sku: 'MS007',
           name: 'Áo khoác đen',
-          slug: "ao-khoac-den",
+          slug: 'ao-khoac-den',
           imageUrl: '/assets/uploads/aokhoac-1.jpg',
           price: 300000,
           stock: 10,
@@ -174,7 +175,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f08'),
           sku: 'MS008',
           name: 'Áo khoác kem',
-          slug: "ao-khoac-kem",
+          slug: 'ao-khoac-kem',
           imageUrl: '/assets/uploads/aokhoac-2.jpg',
           price: 300000,
           stock: 20,
@@ -184,7 +185,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f09'),
           sku: 'MS009',
           name: 'Áo vest bạc',
-          slug: "ao-vest-bac",
+          slug: 'ao-vest-bac',
           imageUrl: '/assets/uploads/aovest-1.jpg',
           price: 1000000,
           stock: 10,
@@ -194,7 +195,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f10'),
           sku: 'MS010',
           name: 'Áo vest xám',
-          slug: "ao-vest-xam",
+          slug: 'ao-vest-xam',
           imageUrl: '/assets/uploads/aovest-2.jpg',
           price: 1000000,
           stock: 20,
@@ -204,7 +205,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f11'),
           sku: 'MS011',
           name: 'Quần jean trắng',
-          slug: "quan-jean-trang",
+          slug: 'quan-jean-trang',
           imageUrl: '/assets/uploads/quanjean-1.jpg',
           price: 400000,
           stock: 10,
@@ -214,7 +215,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f12'),
           sku: 'MS012',
           name: 'Quần jean đen',
-          slug: "quan-jean-den",
+          slug: 'quan-jean-den',
           imageUrl: '/assets/uploads/quanjean-2.jpg',
           price: 400000,
           stock: 20,
@@ -224,7 +225,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f13'),
           sku: 'MS013',
           name: 'Quần kaki  nâu',
-          slug: "quan-kaki-nau",
+          slug: 'quan-kaki-nau',
           imageUrl: '/assets/uploads/quankaki-1.jpg',
           price: 200000,
           stock: 10,
@@ -234,7 +235,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f14'),
           sku: 'MS014',
           name: 'Quần kaki xanh đen',
-          slug: "quan-kaki-xanh-den",
+          slug: 'quan-kaki-xanh-den',
           imageUrl: '/assets/uploads/quankaki-2.jpg',
           price: 200000,
           stock: 20,
@@ -244,7 +245,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f15'),
           sku: 'MS015',
           name: 'Quần tây đen',
-          slug: "quan-tay-den",
+          slug: 'quan-tay-den',
           imageUrl: '/assets/uploads/quantay-1.jpg',
           price: 250000,
           stock: 10,
@@ -254,7 +255,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f16'),
           sku: 'MS016',
           name: 'Quần tây xanh',
-          slug: "quan-tay-xanh",
+          slug: 'quan-tay-xanh',
           imageUrl: '/assets/uploads/quantay-2.jpg',
           price: 250000,
           stock: 20,
@@ -264,7 +265,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f17'),
           sku: 'MS017',
           name: 'Quần short đen',
-          slug: "quan-short-den",
+          slug: 'quan-short-den',
           imageUrl: '/assets/uploads/quanshort-1.jpg',
           price: 150000,
           stock: 10,
@@ -274,7 +275,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f18'),
           sku: 'MS018',
           name: 'Quần short xám',
-          slug: "quan-short-xam",
+          slug: 'quan-short-xam',
           imageUrl: '/assets/uploads/quanshort-2.jpg',
           price: 150000,
           stock: 20,
@@ -284,7 +285,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f19'),
           sku: 'MS019',
           name: 'Quần thun xám',
-          slug: "quan-thun-xam",
+          slug: 'quan-thun-xam',
           imageUrl: '/assets/uploads/quanthun-1.jpg',
           price: 70000,
           stock: 10,
@@ -294,7 +295,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f20'),
           sku: 'MS020',
           name: 'Quần thun đen',
-          slug: "quan-thun-den",
+          slug: 'quan-thun-den',
           imageUrl: '/assets/uploads/quanthun-2.jpg',
           price: 70000,
           stock: 20,
@@ -304,7 +305,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f21'),
           sku: 'MS021',
           name: 'Giày xanh',
-          slug: "giay-xanh",
+          slug: 'giay-xanh',
           imageUrl: '/assets/uploads/giay-1.jpg',
           price: 250000,
           stock: 10,
@@ -314,7 +315,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f22'),
           sku: 'MS022',
           name: 'Giày xám',
-          slug: "giay-xam",
+          slug: 'giay-xam',
           imageUrl: '/assets/uploads/giay-2.jpg',
           price: 250000,
           stock: 20,
@@ -324,7 +325,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f23'),
           sku: 'MS023',
           name: 'Đồng hồ sọc pháp',
-          slug: "dong-ho-soc-phap",
+          slug: 'dong-ho-soc-phap',
           imageUrl: '/assets/uploads/dongho-1.jpg',
           price: 550000,
           stock: 10,
@@ -334,7 +335,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f24'),
           sku: 'MS024',
           name: 'Đồng hồ da',
-          slug: "dong-ho-da",
+          slug: 'dong-ho-da',
           imageUrl: '/assets/uploads/dongho-2.jpg',
           price: 550000,
           stock: 20,
@@ -344,7 +345,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f25'),
           sku: 'MS025',
           name: 'Túi xác nâu',
-          slug: "tui-xach-nau",
+          slug: 'tui-xach-nau',
           imageUrl: '/assets/uploads/tuixach-1.jpg',
           price: 350000,
           stock: 10,
@@ -354,7 +355,7 @@ Catalog
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f26'),
           sku: 'MS026',
           name: 'Túi xách đen',
-          slug: "tui-xach-den",
+          slug: 'tui-xach-den',
           imageUrl: '/assets/uploads/tuixach-2.jpg',
           price: 350000,
           stock: 20,
@@ -375,6 +376,11 @@ Order.find({}).removeAsync()
     console.log('Finished remove orders');
   });
 
+Address.find({}).removeAsync()
+  .then(() => {
+    console.log('Finished remove addresses');
+  });
+
 Cart.find({}).removeAsync()
   .then(() => {
     console.log('Finished remove carts');
@@ -389,14 +395,44 @@ User.find({}).removeAsync()
       password: 'test'
     }, {
       provider: 'local',
+      name: 'Test User 2',
+      email: 'test2@example.com',
+      password: 'test2'
+    }, {
+      provider: 'local',
       role: 'admin',
       name: 'Admin',
       email: 'admin@example.com',
       password: 'admin'
     })
     .then((user) => {
-      Cart.createAsync({
-        _id: user[0]._id,
+      Address.createAsync({
+        uid: user[0]._id,
+        phone: '0909111111',
+        city: 'An Giang',
+        district: 'Huyện An Phú',
+        ward: 'Thị Trấn An Phú',
+        street: '1 QL1',
+        default: false, 
+      }, {
+        uid: user[0]._id,
+        phone: '0909111111',
+        city: 'An Giang',
+        district: 'Huyện An Phú',
+        ward: 'Thị Trấn An Phú',
+        street: '2 QL1',
+        default: true, 
+      }, {
+        uid: user[1]._id,
+        phone: '0909222222',
+        city: 'Cần Thơ',
+        district: 'Quận Ninh Kiều',
+        ward: 'Phường An Thới',
+        street: '2 QL1',
+        default: true, 
+      });
+
+      Cart.updateAsync({_id: user[0]._id}, {
         items: [
           {
             product: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f01'),
@@ -409,7 +445,7 @@ User.find({}).removeAsync()
         ]
       })
       .then((cart) => {
-        // console.log(cart);
+        console.log('Finished populating users');
       })
     });
   });
