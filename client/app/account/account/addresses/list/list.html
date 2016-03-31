@@ -1,2 +1,15 @@
-<a ui-sref="account.editAddress">Edit</a><a ui-sref="account.createAddress">Create</a>
-<p ng-repeat="address in addresses | orderBy:'default'">{{address.street}}</p>
+<!-- <a ui-sref="account.editAddress">Edit</a><a ui-sref="account.createAddress">Create</a> -->
+<h2 class="title text-center">Sổ địa chỉ</h2>
+
+<div class="dashboard-address">
+	<p class="new-address"><a ui-sref="account.createAddress"><i class="fa fa-plus-square-o"></i> <strong>Thêm địa chỉ mới</strong></a></p>
+	<div class="col-md-6" ng-repeat="address in addresses | orderBy:'-default'">
+		<div class="panel panel-default address"  ng-class="{default: address.default}">
+			<p><strong>{{ address.name }}</strong></p>
+			<p>Địa chỉ: {{address.street}}, {{address.ward}}, {{address.district}}, {{address.city}}.</p>
+			<p>Điện thoại: {{address.phone}}</p>
+			<a ui-sref="account.editAddress({id: address._id})" class="btn btn-default edit-btn">Sửa</a>
+			<span ng-if="address.default">Mặc định</span>
+		</div>
+	</div>
+</div>

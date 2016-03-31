@@ -8,16 +8,18 @@ var AddressSchema = new mongoose.Schema({
   	ref: 'User',
   	require: true
   },
+  name: { type: String, require: true},
   phone: { type: String, require: true},
-  city: { type: String, require: true},
-  district: { type: String, require: true},
-  ward: { type: String, require: true},
+  city: { type: Number, require: true},
+  district: { type: Number, require: true},
+  ward: { type: Number, require: true},
   street: { type: String, require: true},
   default: Boolean
 });
 
 AddressSchema
   .post('save', function(doc) {
+    // console.log(doc.name);
     if(doc.default === true) {
       this.unDefaulOther(doc._id, doc.uid);
     }
@@ -26,10 +28,23 @@ AddressSchema
 AddressSchema.methods = {
   
   unDefaulOther(id, uid) {
-    this.model('Address').findAsync({uid: uid, _id: { $ne: id} })
-      .then((doc) => {
-        console.log(doc);
-      });
+    console.log('unDefaulOther');
+    this.model('Address').update({
+      uid: uid, 
+      _id: { $ne: id} ,
+      default: true
+    }, {
+      $set: { default: false }
+    })
+    .then((docs) => {console.log(docs)});
+
+    // this.model('Address').updateAsync({
+    //   uid: uid, 
+    //   _id: { $ne: id} 
+    // }, {$set: {default: false}})
+    //   .then((addresses) => {
+    //     console.log(addresses);
+    //   });
   }
 }
 

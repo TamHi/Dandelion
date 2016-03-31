@@ -66,8 +66,19 @@ angular.module('dandelionApp')
           url: '/address/edit/:id',
           templateUrl: 'app/account/account/addresses/edit/edit.html',
           controller: 'EditAddressesController',
-          controllerAs: 'vm',
-          authenticate: true
+          authenticate: true,
+          resolve: {
+            userAddress: function(Address, $q, $stateParams) {
+              var deferred = $q.defer();
+
+              Address.get({id: $stateParams.id}).$promise
+                .then((res) => {
+                  deferred.resolve(res);
+                })
+
+              return deferred.promise;
+            }
+          }
         })
         .state('account.orders', {
           url: '/orders',

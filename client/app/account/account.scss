@@ -1,3 +1,60 @@
-.lable-left-form .control-label {
-	text-align: left;
+.settings-panel {
+	border: 1px solid #F7F7F0;
+	
+	li {
+		margin: 15px 0;
+		
+		a {
+			text-transform: uppercase;
+			color: #696763;
+			font-size: 14px;
+		}
+
+		a:hover {
+			color: #FE980F;
+		}
+	}
+
+	li.active {
+		a {
+			color: #FE980F;	
+			text-decoration: none;
+		}
+	}
+}
+
+.dashboard-address {
+
+	.address {
+		position: relative;
+		padding: 10px 15px;
+		height: 160px;
+
+		.edit-btn {
+			position: absolute;
+			left: 15px;
+			bottom: 10px;
+		}
+	}
+	.default {
+		border: 1px dashed #090;
+
+		span {
+			position: absolute;
+			top: 10px;
+			right: 25px;
+			color: #090;
+			font-size: 10px;
+		}
+	}
+	
+	.new-address {
+		padding: 5px 15px;
+		margin-bottom: 10px;
+		text-align: right;
+		
+		a {
+			color: #090;
+		}
+	}
 }

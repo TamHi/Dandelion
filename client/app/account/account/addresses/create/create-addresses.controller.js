@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dandelionApp')
-  .controller('CreateAddressesController', function($scope, Auth, $http, Address) {
+  .controller('CreateAddressesController', function($scope, Auth, $http, Address, $state) {
 
   	$scope.createAddress = function() {
   		console.log('Create');
@@ -10,20 +10,17 @@ angular.module('dandelionApp')
 	    if ($scope.form.$valid) {
 	    	console.log('valid');
 
+	    	var name = $scope.address.name;
 	    	var phone = $scope.address.phone;
+	    	var city = $scope.address.city;
+	    	var district = $scope.address.district;
+	    	var ward = $scope.address.ward;
 	    	var street = $scope.address.street;
 	    	var isDefault = $scope.address.default;
-	    	var city = $('#city').find(":selected").text();
-	    	var district = $('#district').find(":selected").text();
-	    	var ward = $('#ward').find(":selected").text();
-	    	// console.log(phone);
-	    	// console.log(street);
-	    	// console.log(city);
-	    	// console.log(district);
-	    	// console.log(ward);
 	    	
 	      Address.save({
 	      	uid: Auth.getCurrentUser()._id,
+	      	name: name,
 	      	phone: phone,
 	      	city: city,
 	      	district: district,
@@ -33,6 +30,7 @@ angular.module('dandelionApp')
 	      })
 	      	.$promise.then((res) => {
 	      		console.log(res);
+	      		$state.go('account.addresses');
 	      	});
    		}
   	}
@@ -44,6 +42,7 @@ angular.module('dandelionApp')
     	});  	
 
    	$scope.$watch('address.city', function(newVal) {
+   		console.log('changed');
     	if(typeof newVal !== 'undefined') {
     		$http.get('/api/addresses/city/'+newVal+'/district')
 	    		.then((res) => {

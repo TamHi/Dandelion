@@ -1,11 +1,18 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
-      <p><a ui-sref=".edit">Edit</a></p>
-      <p><a ui-sref=".addresses">Addresses</a></p>
-      <p><a ui-sref=".orders">Orders</a></p>
+    <div class="col-md-3 left-sidebar">
+      <h2>Thông tin cá nhân</h2>
+  
+      <ul class="panel panel-default settings-panel">
+        <div class="panel-body">
+          <li ui-sref-active="active"><a ui-sref=".edit">Thông tin tài khoản</a></li>
+          <li ui-sref-active="active"><a ui-sref=".addresses">Sổ địa chỉ</a></li>
+          <li ui-sref-active="active"><a ui-sref=".orders">Thông tin hóa đơn</a></li>
+        </div>
+      </>
+
     </div>
-    <div class="col-sm-9">
+    <div class="col-sm-9 padding-right">
       <div ui-view></div>
     </div>
   </div>
