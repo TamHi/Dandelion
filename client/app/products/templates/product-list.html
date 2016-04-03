@@ -41,7 +41,9 @@
 						<div class="product-image-wrapper">
 							<div class="single-products">
 								<div class="productinfo text-center">
-									<img src="{{product.imageUrl}}" alt="{{product.name}}" />
+									<a ui-sref="viewProduct({id: product._id})">
+										<img src="{{product.imageUrl}}" alt="{{product.name}}" />
+									</a>
 									<h2>{{ product.price | currency : "VNĐ" : 0}}</h2>
 									<p>{{ product.name }}</p>
 									<!-- <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a> -->
@@ -62,29 +64,3 @@
     </div>
 	</div>
 </div>
-
-<!-- <div 	class="col-sm-6 col-md-4"
-					ng-repeat="product in products">
-			<div class="thumbnail">
-				<img 	ng-src="{{product.imageUrl}}" alt="{{product.name}}">
-				<div class="caption">
-					<h3>{{ product.name }}</h3>
-					<p>{{ product.description | limitTo: 100 }} ...</p>
-					<p>{{ product.price | currency }}</p>
-					<p>
-						<ngcart-addtocart id="{{product._id}}" 
-															quantity="1" 
-															quantity-max="{{product.stock}}" 
-															name="{{product.name}}" 
-															price="{{product.price}}" 
-															template-url="components/ngcart/addtocart.html">
-							Add to Cart
-						</ngcart-addtocart>
-						<a 	class="btn btn-default" role="button" 
-								ui-sref="viewProduct({id: product._id})">
-							Details	
-						</a>
-					</p>
-				</div>
-			</div>
-		</div> -->

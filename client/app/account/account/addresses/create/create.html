@@ -2,14 +2,13 @@
     
 <form class="form-horizontal" name="form" ng-submit="createAddress()" novalidate>
   
-  <!-- <div ng-include="'app/account/account/addresses/_address_form.html'"></div> -->
   <div class="form-group">
     <label class="control-label col-sm-2">Họ Tên:</label>
     <div class="col-sm-5">
       <input type="text" class="form-control" ng-model="address.name" required>
     </div>
   </div>
-  {{address.name}}
+  <!-- {{address.name}} -->
 
   <div class="form-group">
     <label class="control-label col-sm-2">Số điện thoại:</label>
@@ -17,26 +16,25 @@
       <input type="text" class="form-control" ng-model="address.phone" required>
     </div>
   </div>
-  {{address.phone}}
+  <!-- {{address.phone}} -->
 
   <div class="form-group">
     <label class="control-label col-sm-2">Tỉnh/Thành phố:</label>
     <div class="col-sm-5">
-      <select id="city" class="form-control" ng-model="address.city" placeholder="Chọn Tỉnh/Thành phố" required>
-        <option value="">Chọn Tỉnh/Thành phố</option>
-        <option ng-repeat="city in cities | orderBy: 'Title'" value="{{city.ID}}">{{city.Title}}</option>
+      <select id="city" class="form-control" ng-model="address.city" placeholder="Chọn Quận/Huyện" required
+              ng-options="city.Title for city in cities | orderBy: 'SolrID'">
+        <option value="">- Chọn Tỉnh/Thành Phố -</option>
       </select>
     </div>
   </div>
   {{address.city}}
-  <!-- {{address.city.name}} -->
 
    <div class="form-group">
     <label class="control-label col-sm-2">Quận huyện:</label>
     <div class="col-sm-5">
-      <select id="district" class="form-control" ng-model="address.district" placeholder="Chọn Quận/Huyện" required>
-        <option value="">Chọn Quận/Huyện</option>
-        <option ng-repeat="district in districts | orderBy: 'Title'" value="{{district.ID}}">{{district.Title}}</option>
+      <select id="district" class="form-control" ng-model="address.district" placeholder="Chọn Quận/Huyện" required
+              ng-options="district.Title for district in districts | orderBy: 'SolrID'">
+        <option value="">- Chọn Quận/Huyện -</option>
       </select>
     </div>
   </div>
@@ -45,9 +43,9 @@
   <div class="form-group">
     <label class="control-label col-sm-2">Phường xã:</label>
     <div class="col-sm-5">
-      <select id="ward" class="form-control" ng-model="address.ward" placeholder="Chọn Phường/Xã" required>
-        <option value="">Chọn Phường/Xã</option>
-        <option ng-repeat="ward in wards | orderBy: 'Title'" value="{{ward.ID}}">{{ward.Title}}</option>
+      <select id="ward" class="form-control" ng-model="address.ward" placeholder="Chọn Phường/Xã" required
+              ng-options="ward.Title for ward in wards | orderBy: 'SolrID'">
+        <option value="">- Chọn Phường/Xã -</option>
       </select>
     </div>
   </div>
@@ -59,7 +57,7 @@
       <textarea class="form-control" ng-model="address.street" rows="3" required></textarea>
     </div>
   </div>
-  {{address.street}}
+  <!-- {{address.street}} -->
 
   <div class="form-group"> 
     <div class="col-sm-offset-2 col-sm-10">
@@ -68,7 +66,7 @@
       </div>
     </div>
   </div>
-  {{address.default}}
+  <!-- {{address.default}} -->
 
   <div class="form-group"> 
     <div class="col-sm-offset-2 col-sm-10">

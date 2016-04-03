@@ -1,0 +1,28 @@
+<h2 class="title text-center">Thông tin thanh toán</h2>
+
+<div class="dashboard-payment">
+	<form role="form">
+		<h3>Phương thức thanh toán</h3>
+		{{paymentMethod}}
+		<div class="radio">
+		  <label><input type="radio" ng-model="paymentMethod" value="cash" checked>Thanh toán tiền mặt khi nhận hàng</label>
+		</div>
+		<div class="radio">
+		  <label><input type="radio" ng-model="paymentMethod" value="braintree">Braintree</label>
+		</div>
+    
+    <div id="braintree-form" class="row" ng-class="paymentMethod">
+    	<div class="col-md-8">
+    		<div id="checkout" method="post" action="/checkout">
+	        <div id="payment-form"></div>
+	      </div>
+    	</div>
+			<div class="col-md-4">
+				<span class="credit-card-guide"></span>
+				<p class="note">Vui lòng chú ý kiểm tra tin nhắn nếu có yêu cầu.</p>
+			</div>
+		</div>
+
+		<input type="submit" value="Thanh toán" class="btn btn-danger">
+  </form>
+</div>

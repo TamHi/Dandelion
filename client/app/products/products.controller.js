@@ -17,20 +17,15 @@ angular.module('dandelionApp')
     })
   })
 
-  // .controller('ProductCatalogCtrl', function($scope, $stateParams, Product) {
-  //   $scope.products = Product.catalog({id: $stateParams.slug});
-  //   $scope.query = $stateParams.slug;
-  // })
-
   .controller('ProductViewCtrl', function($scope, $state, $stateParams, Product) {
 
   	$scope.product = Product.get({id: $stateParams.id});
 
-  	$scope.deleteProduct = function() {
-  		Product.delete({id: $scope.product._id}, function () {
-        $state.go('products');
-      }, errorHandler($scope));
-  	};
+  	// $scope.deleteProduct = function() {
+  	// 	Product.delete({id: $scope.product._id}, function () {
+   //      $state.go('products');
+   //    }, errorHandler($scope));
+  	// };
   })
 
   .controller('ProductNewCtrl', function($scope, $state, Product) {
@@ -54,49 +49,49 @@ angular.module('dandelionApp')
     $scope.upload = uploadHander($scope, Upload, $timeout);
   })
 
-  .controller('ProductCheckoutCtrl', function($scope, $http, $state, ngCart, token) {
+  // .controller('ProductCheckoutCtrl', function($scope, $http, $state, ngCart, token) {
 
-    braintree.setup(token, "dropin", {
-      container: "payment-form",
-      onPaymentMethodReceived: function(payload) {
-        // angular.merge(payload, ngCart.toObject());
-        // payload.total = payload.totalCost;
-        console.log(payload);
+  //   braintree.setup(token, "dropin", {
+  //     container: "payment-form",
+  //     onPaymentMethodReceived: function(payload) {
+  //       // angular.merge(payload, ngCart.toObject());
+  //       // payload.total = payload.totalCost;
+  //       console.log(payload);
 
-        // $http.post('/api/orders', payload)
-        //   .then(function (res) {
-        //     console.log(res.data);
-        //     ngCart.empty(true);
-        //     $state.go('products');
-        //   })
-        //   .catch(function(res) {
-        //     $scope.errors = res;
-        //   })
-      }
-    });
+  //       // $http.post('/api/orders', payload)
+  //       //   .then(function (res) {
+  //       //     console.log(res.data);
+  //       //     ngCart.empty(true);
+  //       //     $state.go('products');
+  //       //   })
+  //       //   .catch(function(res) {
+  //       //     $scope.errors = res;
+  //       //   })
+  //     }
+  //   });
 
-    console.log(ngCart);
-    // $scope.errors = '';
-    // console.log(ngCart.toObject());
+  //   console.log(ngCart);
+  //   // $scope.errors = '';
+  //   // console.log(ngCart.toObject());
 
-    // $scope.paymentOptions = {
-    //   onPaymentMethodReceived: function(payload) {
-    //     angular.merge(payload, ngCart.toObject());
-    //     payload.total = payload.totalCost;
-    //     console.log(payload);
+  //   // $scope.paymentOptions = {
+  //   //   onPaymentMethodReceived: function(payload) {
+  //   //     angular.merge(payload, ngCart.toObject());
+  //   //     payload.total = payload.totalCost;
+  //   //     console.log(payload);
 
-    //     $http.post('/api/orders', payload)
-    //       .then(function (res) {
-    //         console.log(res.data);
-    //         ngCart.empty(true);
-    //         $state.go('products');
-    //       })
-    //       .catch(function(res) {
-    //         $scope.errors = res;
-    //       })
-    //   }
-    // }
-  })
+  //   //     $http.post('/api/orders', payload)
+  //   //       .then(function (res) {
+  //   //         console.log(res.data);
+  //   //         ngCart.empty(true);
+  //   //         $state.go('products');
+  //   //       })
+  //   //       .catch(function(res) {
+  //   //         $scope.errors = res;
+  //   //       })
+  //   //   }
+  //   // }
+  // })
 
 errorHandler = function(scope) {
   return function error(httpResponse) {

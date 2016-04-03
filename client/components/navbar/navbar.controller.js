@@ -1,5 +1,5 @@
 angular.module('dandelionApp')
-  .controller('NavbarCtrl', function ($scope, Auth, $aside, ngCart) {
+  .controller('NavbarCtrl', function ($scope, Auth, $aside, ngCart, $state) {
     $scope.menu = [{
       'title': 'Trang chủ',
       'state': 'main'
@@ -7,6 +7,8 @@ angular.module('dandelionApp')
       'title': 'Shop',
       'state': 'products'
     }];
+
+    $scope.ngCart = ngCart;
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
@@ -21,30 +23,15 @@ angular.module('dandelionApp')
         windowClass: 'app-modal-window',
         backdrop: true,
         controller: function($scope, $uibModalInstance) {
-          $scope.ok = function(e) {
+          $scope.checkout = function(e) {
+            // alert('Here');
+            $state.go('checkout.shipping');
             $uibModalInstance.close();
-            e.stopPropagation();
-          };
-          $scope.cancel = function(e) {
-            $uibModalInstance.dismiss();
+
             e.stopPropagation();
           };
         }
       })
       // .result.then(postClose, postClose);
     };
-
-    // $scope.search = function () {
-    //   $rootScope.$broadcast('search:term', $scope.searchTerm);
-    // };
-
-    // $scope.redirect = function () {
-    //   $state.go('products');
-    //   // timeout makes sure that it is invoked after any other event has been triggered.
-    //   $timeout(function () {
-    //     // focus on search box
-    //     var searchBox = $window.document.getElementById('searchBox');
-    //     if(searchBox){ searchBox.focus(); }
-    //   })
-    // };
   });

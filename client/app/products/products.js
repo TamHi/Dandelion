@@ -23,28 +23,4 @@ angular.module('dandelionApp')
         templateUrl: 'app/products/templates/product-edit.html',
         controller: 'ProductEditCtrl'
       })
-      // .state('productCatalog', {
-      //   url: '/products/:slug/catalog',
-      //   templateUrl: 'app/products//templates/product-list.html',
-      //   controller: 'ProductCatalogCtrl'
-      // })
-      .state('checkout', {
-        url: '/checkout',
-        templateUrl: 'app/products/templates/products-checkout.html',
-        controller: 'ProductCheckoutCtrl',
-        resolve: {
-          token: ($q, $http) => {
-            var deferred = $q.defer();
-
-            $http.get('/api/braintree/client_token')
-              .then((res) => {
-                deferred.resolve(res.data)
-              })
-              .catch(() => {
-                console.log('Errors');
-              })
-            return deferred.promise;
-          }
-        }
-      });
   });

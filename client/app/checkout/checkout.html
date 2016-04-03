@@ -1,0 +1,58 @@
+<!-- <a class="btn btn-default" ui-sref=".shipping">Shipping</a>
+<a class="btn btn-default" ui-sref=".payment">Payment</a> -->
+<div class="container">
+  <div class="col-md-9">
+    <div ui-view></div>
+  </div>
+  <div class="col-md-3">
+    <div>
+      <div class="checkout-address">
+        <div class="panel panel-default">
+          <div class="panel-heading">Địa chỉ giao hàng</div>
+          <div class="panel-body">
+            <p><strong>{{chosenAddress.name}}</strong></p>
+            <p><strong>Địa chỉ:</strong> {{chosenAddress.street}}, {{chosenAddress.ward.title}}, {{chosenAddress.district.title}}, {{chosenAddress.city.title}}</p>
+            <p><strong>Điện thoại:</strong> {{chosenAddress.phone}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="checkout-items">
+        <div class="panel panel-default">
+          <div class="panel-heading">Đơn hàng ({{ngCart.getTotalItems()}} sản phẩm)</div>
+          <div class="panel-body">
+            <div class="item" ng-repeat="item in ngCart.getCart().items">
+              <p>
+                <strong>{{item.getQuantity() | number}} x</strong>
+                <a ui-sref="viewProduct({id: item.getData()._id})">{{item.getName()}}</a>
+              </p>
+              <p>{{item.getTotal() | currency}}</p>
+            </div>
+            <div class="total">
+              <p><strong>Thành tiền:</strong></p>
+              <p>{{ngCart.totalCost() | currency}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="container">
+  <div class="row">
+    <h1>Cart</h1>
+    <ngcart-cart template-url="components/ngcart/cart.html">
+    </ngcart-cart>
+  </div>
+  <div class="row">
+    <h1>Choose a payment method</h1>
+    <p class="help-block">{{ errors }}</p>
+    <div class="col-md-6">
+      <form id="checkout" method="post" action="/checkout">
+        <div id="payment-form"></div>
+        <input type="submit" value="Pay $10">
+      </form>
+    </div>
+  </div>
+</div> -->
+
+<!-- <script src="https://js.braintreegateway.com/js/braintree-2.21.0.min.js"></script> -->

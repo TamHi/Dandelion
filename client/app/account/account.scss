@@ -29,12 +29,22 @@
 		position: relative;
 		padding: 10px 15px;
 		height: 160px;
-
-		.edit-btn {
+		
+		.button-group {
 			position: absolute;
 			left: 15px;
 			bottom: 10px;
 		}
+		// .edit-btn {
+		// 	position: absolute;
+		// 	left: 15px;
+		// 	bottom: 10px;
+		// }
+		// .delete-btn {
+		// 	position: absolute;
+		// 	left: 15px;
+		// 	bottom: 10px;
+		// }
 	}
 	.default {
 		border: 1px dashed #090;

@@ -17,7 +17,8 @@ angular.module('dandelionApp')
         url: '/logout?referrer',
         referrer: 'main',
         template: '',
-        controller: function($state, Auth, ngCart, cart) {
+        controller: function($rootScope, $state, Auth, ngCart, cart) {
+          delete $rootScope.requiredAuthState;
           var referrer = $state.params.referrer ||
                           $state.current.referrer ||
                           'main';
@@ -52,14 +53,12 @@ angular.module('dandelionApp')
           url: '/address',
           templateUrl: 'app/account/account/addresses/list/list.html',
           controller: 'AddressesController',
-          controllerAs: 'vm',
           authenticate: true
         })
         .state('account.createAddress', {
           url: '/address/create',
           templateUrl: 'app/account/account/addresses/create/create.html',
           controller: 'CreateAddressesController',
-          controllerAs: 'vm',
           authenticate: true
         })
         .state('account.editAddress', {
@@ -67,24 +66,11 @@ angular.module('dandelionApp')
           templateUrl: 'app/account/account/addresses/edit/edit.html',
           controller: 'EditAddressesController',
           authenticate: true,
-          resolve: {
-            userAddress: function(Address, $q, $stateParams) {
-              var deferred = $q.defer();
-
-              Address.get({id: $stateParams.id}).$promise
-                .then((res) => {
-                  deferred.resolve(res);
-                })
-
-              return deferred.promise;
-            }
-          }
         })
         .state('account.orders', {
           url: '/orders',
           templateUrl: 'app/account/account/orders/orders.html',
           controller: 'OrdersController',
-          controllerAs: 'vm',
           authenticate: true
         });
   })

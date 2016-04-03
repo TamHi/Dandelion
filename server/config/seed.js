@@ -410,36 +410,72 @@ User.find({}).removeAsync()
         uid: user[0]._id,
         name: 'Nguyễn Văn A',
         phone: '0909111111',
-        city: 26,
-        district: 85,
-        ward: 2225,
+        city: {
+          id: 26,
+          title: 'Cần Thơ'
+        },
+        district: {
+          id: 85,
+          title: 'Quận Cái Răng'
+        },
+        ward: {
+          id: 2225,
+          title: 'Phường Lê Bình'
+        },
         street: '1 QL1',
         default: false, 
       }, {
         uid: user[0]._id,
         name: 'Nguyễn Văn B',
         phone: '0909222222',
-        city: 26,
-        district: 119,
-        ward: 1682,
+        city: {
+          id: 26,
+          title: 'Cần Thơ'
+        },
+        district: {
+          id: 119,
+          title: 'Quận Ninh Kiều'
+        },
+        ward: {
+          id: 1682,
+          title: 'Phường An Lạc'
+        },
         street: '1 Nguyễn Thị Minh Khai',
         default: false, 
       }, {
         uid: user[0]._id,
         name: 'Nguyễn Văn C',
         phone: '0909333333',
-        city: 26,
-        district: 85,
-        ward: 2225,
+        city: {
+          id: 26,
+          title: 'Cần Thơ'
+        },
+        district: {
+          id: 85,
+          title: 'Quận Cái Răng'
+        },
+        ward: {
+          id: 2225,
+          title: 'Phường Lê Bình'
+        },
         street: '2 QL1',
         default: true, 
       }, {
         uid: user[1]._id,
         name: 'Nguyễn Văn D',
         phone: '0909444444',
-        city: 26,
-        district: 119,
-        ward: 1682,
+        city: {
+          id: 26,
+          title: 'Cần Thơ'
+        },
+        district: {
+          id: 119,
+          title: 'Quận Ninh Kiều'
+        },
+        ward: {
+          id: 1682,
+          title: 'Phường An Lạc'
+        },
         street: '2 Nguyễn Thị Minh Khai',
         default: true, 
       });

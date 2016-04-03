@@ -8,6 +8,16 @@
         <p>{{product.price | currency }}</p>
         <p>
           <ngcart-addtocart id="{{product._id}}" 
+                            name="{{product.name}}" 
+                            price="{{product.price}}" 
+                            quantity="1"
+                            quantity-max="9"
+                            template-url="components/ngcart/addtocart.html" 
+                            data="product">
+            <i class="fa fa-shopping-cart"></i>
+            Add to cart
+          </ngcart-addtocart>
+          <!-- <ngcart-addtocart id="{{product._id}}" 
                             quantity="1" 
                             quantity-max="9" 
                             name="{{product.name}}" 
@@ -15,9 +25,9 @@
                             data="{{product}}"
                             template-url="components/ngcart/addtocart.html">
             Add to Cart
-          </ngcart-addtocart>
+          </ngcart-addtocart> -->
 
-          <a  class="btn btn-default" role="button"
+          <!-- <a  class="btn btn-default" role="button"
               ui-sref="products" >
             Back
           </a>
@@ -27,7 +37,7 @@
             Edit
           </a>
           
-          <a class="btn btn-danger" ng-click="deleteProduct()">Delete</a>
+          <a class="btn btn-danger" ng-click="deleteProduct()">Delete</a> -->
         </p>
       </div>
     </div>
