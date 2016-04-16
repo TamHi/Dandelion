@@ -1,17 +1,17 @@
 'use strict';
 
 angular.module('dandelionApp')
-  .factory('Checkout', function($q, Address, _) {
+  .factory('Checkout', function($q, Address, _, Auth) {
 
     var checkout = {
       queryAddress: function() {
         var deferred = $q.defer();
 
-        Address.query().$promise
+        Address.user({id: Auth.getCurrentUser()._id}).$promise
           .then((res) => {
             // console.log(res);
             this.addresses = res;
-            console.log(this.addresses);
+            // console.log(this.addresses);
             deferred.resolve(this.addresses);
           });
 
@@ -19,11 +19,11 @@ angular.module('dandelionApp')
       },
 
       getDefaultAddress: function() {
-        this.defaultAdress = _.find(this.addresses, function(address) {
+        this.address = _.find(this.addresses, function(address) {
           return address.default === true;
         })
-        console.log(this.defaultAdress);
-        return this.defaultAdress;
+        // console.log(this.address);
+        return this.address;
       },
 
       setAddress: function(id) {
@@ -31,12 +31,12 @@ angular.module('dandelionApp')
           return address._id === id;
         });
 
-        console.log(this.address);
+        // console.log(this.address);
         return this.address;
       },
 
       getAddress: function() {
-        console.log(this.address);
+        // console.log(this.address);
         return this.address;
       }
 

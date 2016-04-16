@@ -1,14 +1,14 @@
 <h2 class="title text-center">Thông tin thanh toán</h2>
 
 <div class="dashboard-payment">
-	<form role="form">
+	<form role="form" ng-submit="order()">
 		<h3>Phương thức thanh toán</h3>
-		{{paymentMethod}}
+		<!-- {{paymentMethod}} -->
 		<div class="radio">
-		  <label><input type="radio" ng-model="paymentMethod" value="cash" checked>Thanh toán tiền mặt khi nhận hàng</label>
+		  <label><input type="radio" ng-model="paymentMethod" value="cash" ng-click="teardownBraintree()">Thanh toán tiền mặt khi nhận hàng</label>
 		</div>
 		<div class="radio">
-		  <label><input type="radio" ng-model="paymentMethod" value="braintree">Braintree</label>
+		  <label><input type="radio" ng-model="paymentMethod" value="braintree" ng-click="setupBraintree()">Braintree</label>
 		</div>
     
     <div id="braintree-form" class="row" ng-class="paymentMethod">

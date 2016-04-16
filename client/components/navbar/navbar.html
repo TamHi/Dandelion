@@ -1,91 +1,48 @@
-<header id="header">
-
-  <div class="header_top">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6 ">
-          <div class="contactinfo">
-            <ul class="nav nav-pills">
-              <li><a href=""><i class="fa fa-phone"></i> +84 909 347 694</a></li>
-              <li><a href=""><i class="fa fa-envelope"></i> builevutam4494@gmail.com</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="social-icons pull-right">
-            <ul class="nav navbar-nav">
-              <li><a href="https://www.facebook.com/tam.builevu"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="https://github.com/TamHi"><i class="fa fa-github"></i></a></li>
-              <li><a href="https://plus.google.com/u/0/113161648173584959596"><i class="fa fa-google-plus"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+<nav  ng-hide="isAdminState"
+      class="navbar navbar-default" 
+      ng-class="{'navbar-fixed-top main-navbar' : currentState == 'main', 'navbar-fixed-top' : currentState == 'products' }">
+    <!-- {{currentState}} -->
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/">Dandelion<span>.</span></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li ui-sref-active="active">
+          <a ui-sref="products">Shop</a>
+        </li>
+        <li ng-show="isAdmin()" ui-sref-active="active">
+          <a ui-sref=".admin">Dashboard</a>
+        </li>
+        <li ng-hide="isAdmin()" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Account<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a ui-sref="account.edit">Information</a></li>
+            <li><a ui-sref="account.addresses">Addresses</a></li>
+            <li><a ui-sref="account.orders">Orders</a></li>
+          </ul>
+        </li>
+        <li ng-show="isLoggedIn()"><a ui-sref="logout">Logout</a></li>
+        <li ng-hide="isLoggedIn()" ui-sref-active="active">
+          <a ui-sref=".signup">Sign up</a>
+        </li>
+        <li ng-hide="isLoggedIn()" ui-sref-active="active">
+          <a ui-sref=".login">Log in</a>
+        </li>
+        <li>
+          <a href="#" ng-click="showCart()">
+            <ngcart-summary template-url="components/ngcart/summary.html"></ngcart-summary>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
-  
-  <div class="header-middle">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-2">
-          <div class="logo pull-left">
-            <a ui-sref="main"><img src="assets/images/logo.png" alt="Dandelion" /></a>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-          <div class="mainmenu pull-left">
-            <ul class="nav navbar-nav collapse navbar-collapse">
-              <li ng-repeat="item in menu" ui-sref-active="active">
-                <a ui-sref="{{item.state}}">{{item.title}}</a>
-              </li>
-              <li ng-show="isAdmin()" ui-sref-active="active">
-                <a ui-sref="admin">Dashboard</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="col-sm-6">
-          <div class="shop-menu pull-right">
-            <ul class="nav navbar-nav">
-              <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Sign up</a></li>
-              <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Login</a></li>
-              <li ng-show="isLoggedIn()" class="dropdown">
-                <a href="#">Tài khoản<i class="fa fa-angle-down"></i></a>
-                <ul role="menu" class="sub-menu">
-                  <li><a ui-sref="account.edit">Thông tin tài khoản</a></li>
-                  <li><a ui-sref="account.addresses">Sổ địa chỉ</a></li> 
-                  <li><a ui-sref="account.orders">Đơn hàng</a></li>
-                </ul>
-              </li> 
-              <!-- <li ng-show="isLoggedIn()" ui-sref-active="active"><a ui-sref="settings"><span class="glyphicon glyphicon-cog"></span></a></li> -->
-              <li ng-show="isLoggedIn()"><a ui-sref="logout">Logout</a></li>
-              <li>
-                <a href="#" ng-click="showCart()">
-                  <ngcart-summary template-url="components/ngcart/summary.html"></ngcart-summary>
-                </a>
-              </li>
-              <!-- <li><a href=""><i class="fa fa-user"></i> Account</a></li>
-              <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-              <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-              <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li> -->
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</header>
+</nav>
 
 <script type="text/ng-template" id="aside-cart.html">
   <div class="modal-header">
@@ -93,7 +50,7 @@
     <div ng-hide="ngCart.isEmpty()">
       <button class="btn btn-default" ng-click="checkout($event)">Thanh toán</button>
       <div>
-        <strong>{{ngCart.totalCost() | currency}}</strong>
+        <strong>{{ngCart.totalCost() | currency:undefined:0}}</strong>
       </div>
     </div>
   </div>

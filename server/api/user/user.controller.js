@@ -1,7 +1,6 @@
 'use strict';
 
 import User from './user.model';
-import Cart from '../cart/cart.model';
 import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
@@ -27,6 +26,7 @@ function handleError(res, statusCode) {
 export function index(req, res) {
   User.findAsync({}, '-salt -password')
     .then(users => {
+
       res.status(200).json(users);
     })
     .catch(handleError(res));

@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-lg-12">
+    <rd-widget>
+      <rd-widget-header icon="fa-users" title="Users">
+        <input type="text" placeholder="Search" class="form-control input-sm" />
+      </rd-widget-header>
+      <rd-widget-body classes="medium no-padding">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Addresses</th>
+                <th>Orders</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="user in users">
+                <td>{{user._id}}</td>
+                <td>Joe Bloggs</td>
+                <td>Super Admin</td>
+                <td>AZ23045</td>
+                <td>AZ23045</td>
+                <td>AZ23045</td>
+              </tr>
+            </tbody>
+          </table>
+            </div>
+      </rd-widget-body>
+    <rd-widget>
+  </div>
+</div>
+  
+<!-- <div class="row">
+  <div class="col-md-4">
+    <input type="text" ng-model="query">
+    <ul class="list-group user-list">
+      <li class="list-group-item" ng-repeat="user in users | filter:query">
+        <a ui-sref=".detail({id: user._id})">
+          <div class="user-info">
+              <strong>{{user.name}}</strong><br>
+              <span class="text-muted">{{user.email}}</span>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-md-8">
+    <div ui-view></div>
+  </div>
+</div> -->

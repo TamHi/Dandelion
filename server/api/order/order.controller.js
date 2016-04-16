@@ -61,7 +61,18 @@ function handleError(res, statusCode) {
 
 // Gets a list of Orders
 export function index(req, res) {
-  Order.findAsync()
+  Order.find()
+    // .populate('user')
+    // .populate('shippingAddress')
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
+// Gets a list of Orders
+export function userOrder(req, res) {
+  Order.findAsync(req.params.id)
+    // .populate('user')
+    // .populate('shippingAddress')
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
@@ -76,7 +87,16 @@ export function show(req, res) {
 
 // Creates a new Order in the DB
 export function create(req, res) {
-  Order.createAsync(req.body)
+  // console.log(req.body.nonce);
+  Order.createAsync({
+    user: req.user._id,
+    shippingAddress: req.body.shippingAddress,
+    items: req.body.items,
+    total: req.body.total,
+    type: req.body.type,
+    nonce: req.body.nonce
+    // nonce: 'fake-processor-declined-visa-nonce'
+  })
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }

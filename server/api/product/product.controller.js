@@ -15,11 +15,14 @@ import Catalog from '../catalog/catalog.model';
 import path from 'path';
 
 function saveFile(res, file) {
+  // console.log('saveFile');
   return function(entity) {
+    // console.log(file.path);
     var newPath = '/assets/uploads/' + path.basename(file.path);
+    // console.log(newPath);
     entity.imageUrl = newPath;
     return entity.saveAsync().spread(function(updated) {
-      console.log(updated);
+      // console.log(updated);
       return updated;
     });
   }
@@ -104,7 +107,8 @@ export function index(req, res) {
 
 // Gets a single Product from the DB
 export function show(req, res) {
-  Product.findByIdAsync(req.params.id)
+  Product.findById(req.params.id)
+    .populate('categories')
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));

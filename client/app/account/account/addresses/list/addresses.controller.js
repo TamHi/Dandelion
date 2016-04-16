@@ -3,7 +3,7 @@
 angular.module('dandelionApp')
   .controller('AddressesController', function($scope, Auth, Address, _) {
  
-  	Address.query().$promise
+  	Address.user({id: Auth.getCurrentUser()._id}).$promise
   		.then((addresses) => {
   			$scope.addresses = addresses;
   			// console.log(addresses);

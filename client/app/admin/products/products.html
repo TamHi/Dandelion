@@ -1,0 +1,36 @@
+<h2 class="title text-center">Kho hàng</h2>
+
+<div class="col-lg-12">
+  <div class="box">
+    <div class="box-header">
+      <h2><i class="icon-gift"></i><span class="break"></span>{{products.length}} Sản phẩm</h2>
+
+      <a href="admin/products/create" class="btn btn-default pull-right"><i></i>Thêm mới</a>
+    </div>
+    <div class="box-content">
+      <table class="table table-bordered table-striped table-condensed">
+        <thead>
+          <tr>
+            <th data-type="id" style="width: 120px">#</th>
+            <th data-type="sku" style="display: table-cell;">SKU</th>
+            <th data-type="name" style="display: table-cell;">Tên sản phẩm</th>
+            <th data-type="stock_level" style="display: table-cell;">Tồn kho</th>
+            <th data-type="buttons" style="width: 90px">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="product in products">
+            <td>{{product._id}}</td>
+            <td style="display: table-cell;">{{product.sku}}</td>
+            <td class="title" style="display: table-cell;">{{product.name}}</td>
+            <td style="display: table-cell;">{{product.stock}}</td>
+            <td>
+              <a href="admin/products/edit/{{product._id}}" class="btn btn-info"><i class="fa fa-pencil"></i></a>
+              <a ng-click="delete(product)" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

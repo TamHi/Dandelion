@@ -3,6 +3,38 @@
 var _ = require('lodash');
 var mongoose = require('bluebird').promisifyAll(require('mongoose'));
 var Braintree = require('../braintree/braintree.model');
+var fx = require('money');
+var request = require('request');
+// console.log(fx);
+
+var convertToTUSD = function(amount, cb) {
+  // console.log(amount);
+  return new Promise(function(resolve, reject) {
+    var url = 'https://openexchangerates.org/api/latest.json?app_id=fb0b7026d8d34bd7af5e6c008f5f5e9e'
+    request(url, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        var result = JSON.parse(body);
+        fx.base = result.base;
+        fx.rates = result.rates;
+        var rs = fx(amount).convert({from: 'VND', to: 'USD'});
+        // console.log(rs);
+        resolve(rs);
+      }
+      else {
+        reject(err);
+      }
+    }) 
+  })
+    
+};
+
+// convertToTUSD(100000)
+//   .then(function(amount) {
+//     console.log('Callback');
+//     console.log(amount);
+//   });
+    
+
 
 var OrderDetailsSchema = new mongoose.Schema({
 	product: {
@@ -14,69 +46,79 @@ var OrderDetailsSchema = new mongoose.Schema({
 });
 
 var OrderSchema = new mongoose.Schema({
+  createAt: {
+    type: Date,
+    default: Date.now
+  },
+
   // Buyer details
-  name: String,
   user: {
   	type: mongoose.Schema.Types.ObjectId,
-  	ref: 'User'
+  	ref: 'User',
+    required: true
   },
-  shippingAddress: String,
-  billingAddress: String,
+  shippingAddress: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Address',
+    required: true
+  },
 
   // Price details
   items: [OrderDetailsSchema],
-  // shipping: {
-  // 	type: Number,
-  // 	default: 0
-  // },
-  // tax: {
-  // 	type: Number,
-  // 	default: 0
-  // },
-  // discount: {
-  // 	type: Number,
-  // 	default: 0
-  // },
-  subTotal: Number,
   total: {
   	type: Number,
   	required: true
   },
-
-  // Payment Info
-  status: {
-  	type: String,
-  	default: 'pending' // pending, paid, failed, deliverd, cancelled, refunded
+  
+  paymentStatus: {
+    type: Boolean,
+    default: false
   },
-  paymentType: {
-  	type: String,
-  	default: 'braintree'
+  shippingStatus: {
+    type: Boolean,
+    default: false
   },
-  paymentStatus: mongoose.Schema.Types.Mixed,
   nonce: String,
   type: String
 });
 
 OrderSchema.pre('validate', function (next) {
+  console.log('Validate');
+
   if(!this.nonce) { return next(); }
   executePayment(this, function (err, result) {
+
+    console.log(result.success);
     this.paymentStatus = result;
     if(err || !result.success){
-      this.status = 'failed. ' + result.errors + err;
+      this.paymentStatus = false;
       next(err || result.errors);
     } else {
-      this.status = 'paid';
       next();
     }
   }.bind(this));
 });
 
 function executePayment(payment, cb){
-	console.log('model');
-  Braintree.transaction.sale({
-    amount: payment.total,
-    paymentMethodNonce: payment.nonce,
-  }, cb);
-}
+  console.log('Pay');
+
+  if(payment.type === 'CreditCard') {
+    Braintree.transaction.sale({
+      amount: payment.total,
+      paymentMethodNonce: payment.nonce
+    }, cb);
+  }
+
+  if(payment.type === 'PayPalAccount') {
+    convertToTUSD(payment.total)
+      .then(function(amount) {
+        Braintree.transaction.sale({
+          amount: Math.round( amount * 10 ) / 10,
+          paymentMethodNonce: payment.nonce,
+          merchantAccountId: "dandelion"
+        }, cb);
+      });
+  } 
+};
 
 export default mongoose.model('Order', OrderSchema);

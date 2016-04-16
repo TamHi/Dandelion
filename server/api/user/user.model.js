@@ -9,6 +9,8 @@ const authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var UserSchema = new Schema({
   name: String,
+  // numAddresses: Number,
+  // numOrders: Number,
   // gender: Boolean,
   // birthday: Date,
   email: {
@@ -23,9 +25,9 @@ var UserSchema = new Schema({
   provider: String,
   salt: String,
   facebook: {},
-  twitter: {},
+  // twitter: {},
   google: {},
-  github: {}
+  // github: {}
 });
 
 /**
@@ -38,7 +40,8 @@ UserSchema
   .get(function() {
     return {
       'name': this.name,
-      'role': this.role
+      'email': this.email
+      // 'role': this.role
     };
   });
 

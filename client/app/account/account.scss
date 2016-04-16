@@ -1,3 +1,43 @@
+.auth-form {
+	width: 600px;
+	margin: 0 auto;
+	border: 1px solid rgba(0,0,0,0.3);
+
+	.heading {
+		background-color: $red;
+		color: white;
+		text-transform: uppercase;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+
+	.btn-main {
+		width: 100%;
+		background-color: $red;
+		color: $link-color-main;
+
+		&:hover,
+		&:focus {
+			background-color: darken($red, 10%);
+			color: $link-hover-color-main;
+		}
+	}
+
+	.link-sub {
+		text-decoration: none;
+		color: $link-color;
+
+		&:hover,
+		&:focus {
+			color: $link-hover-color;
+		}
+	}
+
+	.oauth-login {
+		margin-bottom: 20px;
+	}
+}
+
 .settings-panel {
 	border: 1px solid #F7F7F0;
 	

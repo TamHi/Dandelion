@@ -104,7 +104,7 @@ export function index(req, res) {
 // Gets a list of Addresss
 export function userAddress(req, res) {
   // console.log(req.user._id);
-  Address.findAsync({ uid: req.user._id })
+  Address.findAsync({ uid: req.params.id })
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

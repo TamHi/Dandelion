@@ -15,7 +15,8 @@ angular.module('dandelionApp', [
   'ngCart',
   'ngAside',
   'angularSlideables',
-  'underscore'
+  'underscore',
+  'RDash'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider
@@ -25,6 +26,12 @@ angular.module('dandelionApp', [
   })
 
   .run(function($rootScope, cart, Auth) {
+
+    $rootScope.$on('$stateChangeSuccess',function(event, toState, toParams, fromState, fromParams){
+      $rootScope.currentState = toState.name;
+      $rootScope.isAdminState = (toState.name.indexOf('admin') > -1) ? true:false;
+    });
+
     // Watch login state
     $rootScope.$watch(function() { 
       if(typeof Auth.getToken() === 'undefined') {
@@ -32,7 +39,7 @@ angular.module('dandelionApp', [
       }
       else return true;
     }, function(newValue) {
-      console.log(newValue);
+      // console.log(newValue);
       if(newValue) {
         // Wait for getCurrentUser to resolve
         Auth.getCurrentUser().$promise.then(() => {

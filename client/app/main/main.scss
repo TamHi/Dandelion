@@ -1,26 +1,40 @@
-// .thing-form {
-//   margin: 20px 0;
-// }
+header {
+  height: 100vh;
+  background: url('/assets/images/header4.jpg');
+  background-size: cover;
+  position: relative;
 
-// #banner {
-//   border-bottom: none;
-// }
+  .header-content {
+    overflow: auto;
+    position: absolute;
+    top: 50%;
+    right: 5em;
+    transform: translateY(-50%);
+    text-align: center;
 
-// #banner h1 {
-//   font-size: 60px;
-//   line-height: 1;
-//   letter-spacing: -1px;
-// }
+    h1 {
+      color:  $red;
+    }
 
-// .hero-unit {
-//   position: relative;
-//   padding: 30px 15px;
-//   color: #F5F5F5;
-//   text-align: center;
-//   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-//   background: #4393B9;
-// }
+    .btn-primary {
+      background-color: rgba(0, 0, 0, 0);
+      color: #FFF;
+      border: 2px solid #FFF;
+      border-radius: 0;
+      margin-top: 30px;
+      
+      text-transform: uppercase;
 
-// .navbar-text {
-//   margin-left: 15px;
-// }
+      @include transition-duration(.2s);
+
+      &:hover,
+      &:focus {
+        background-color: rgba(0, 0, 0, .2);
+      }
+    }
+
+    .fa-long-arrow-right {
+      margin-left: 10px;
+    }
+  }
+}

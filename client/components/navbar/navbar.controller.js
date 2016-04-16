@@ -1,12 +1,13 @@
 angular.module('dandelionApp')
-  .controller('NavbarCtrl', function ($scope, Auth, $aside, ngCart, $state) {
-    $scope.menu = [{
-      'title': 'Trang chủ',
-      'state': 'main'
-    }, {
-      'title': 'Shop',
-      'state': 'products'
-    }];
+  .controller('NavbarCtrl', function ($rootScope, $scope, Auth, $aside, ngCart) {
+
+    // $scope.menu = [{
+    //   'title': 'Trang chủ',
+    //   'state': 'main'
+    // }, {
+    //   'title': 'Shop',
+    //   'state': 'products'
+    // }];
 
     $scope.ngCart = ngCart;
 
@@ -16,6 +17,7 @@ angular.module('dandelionApp')
     $scope.getCurrentUser = Auth.getCurrentUser;
 
     $scope.showCart = function() {
+      // console.log('Show cart');
       $aside.open({
         templateUrl: 'aside-cart.html',
         placement: 'right',

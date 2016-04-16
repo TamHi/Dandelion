@@ -24,7 +24,7 @@ angular.module('dandelionApp')
 
     var cart = {
     	subscribe: function() {
-    		console.log('S');
+    		// console.log('S');
 
     		listenCartChanged = $rootScope.$on('ngCart:change', function() {
     			updateUserCart();
@@ -32,7 +32,7 @@ angular.module('dandelionApp')
     	},
 
     	unsubscribe: function() {
-    		console.log('US');
+    		// console.log('US');
     		listenCartChanged();
     	},
 
@@ -40,14 +40,14 @@ angular.module('dandelionApp')
     		// console.log(ngCart.getItems());
     		// If cart is empty => Fetch from DB
     		if(ngCart.getItems().length === 0) {
-    			console.log('Enter empty');
+    			// console.log('Enter empty');
     			var deferred = $q.defer();
     			$http.get('/api/carts/' + Auth.getCurrentUser()._id)
 	    			.then(function(res) {
 	    				var items = res.data.items;
 	    			
 	    				angular.forEach(items, function(value) {
-                console.log(value);
+                // console.log(value);
 	    					ngCart.addItem(value.product._id, value.product.name, value.product.price, value.quantity, value.product);
 	    				});
 
@@ -57,7 +57,7 @@ angular.module('dandelionApp')
     		}
     		// Else update cart
     		else {
-    			console.log('Enter not empty');
+    			// console.log('Enter not empty');
     			var deferred = $q.defer();
     			updateUserCart();
     			deferred.resolve();

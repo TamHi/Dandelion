@@ -26,8 +26,10 @@ var quan,
     quanthun;
 var phukien,
     giay,
-    dongho,
-    tuixach;
+    non,
+    tuixach,
+    matkinh,
+    daynich;
 
 Catalog
   .find({})
@@ -89,14 +91,22 @@ Catalog
     })
     .then(function (category) {
       giay = category._id;
-      return phukien.addChild({name: 'Đồng hồ', slug: 'dong-ho'});
+      return phukien.addChild({name: 'Nón', slug: 'non'});
     })
     .then(function (category) {
-      dongho = category._id;
+      non = category._id;
       return phukien.addChild({name: 'Túi xách', slug: 'tui-xach'});
     })
     .then(function (category) {
       tuixach = category._id;
+      return phukien.addChild({name: 'Mắt kính', slug: 'mat-kinh'});
+    })
+    .then(function (category) {
+      matkinh = category._id;
+      return phukien.addChild({name: 'Dây nịch', slug: 'day-nich'});
+    })
+    .then(function (category) {
+      daynich = category._id;
     })
     .then(function() {
       return Product.find({}).removeAsync()
@@ -104,263 +114,281 @@ Catalog
         Product.createAsync({
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f01'),
           sku: 'MS001',
-          name: 'Áo thun xám',
-          slug: 'ao-thun-xam',
+          name: 'Áo thun 1',
+          slug: 'ao-thun-1',
           imageUrl: '/assets/uploads/aothun-1.jpg',
           price: 150000,
           stock: 10,
-          categories: [aothun],
-          description: 'Áo thun tay ngăn xám sọc xanh đen'
+          categories: [aothun]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f02'),
           sku: 'MS002',
-          name: 'Áo thun xanh',
-          slug: 'ao-thun-xanh',
+          name: 'Áo thun 2',
+          slug: 'ao-thun-2',
           imageUrl: '/assets/uploads/aothun-2.jpg',
           price: 150000,
           stock: 20,
-          categories: [aothun],
-          description: 'Áo thun tay ngăn xanh sọc ngang'
+          categories: [aothun]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f03'),
           sku: 'MS003',
-          name: 'Áo sơ mi trắng',
-          slug: 'ao-somi-trang',
+          name: 'Áo sơ mi 1',
+          slug: 'ao-somi-1',
           imageUrl: '/assets/uploads/aosomi-1.jpg',
           price: 200000,
           stock: 10,
-          categories: [somi],
-          description: 'Áo sơ mi tay dài trắng'
+          categories: [somi]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f04'),
           sku: 'MS004',
-          name: 'Áo sơ mi xanh',
-          slug: 'ao-somi-xanh',
+          name: 'Áo sơ mi 2',
+          slug: 'ao-somi-2',
           imageUrl: '/assets/uploads/aosomi-2.jpg',
           price: 200000,
           stock: 20,
-          categories: [somi],
-          description: 'Áo sơ mi tay dài xanh'
+          categories: [somi]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f05'),
           sku: 'MS005',
-          name: 'Áo ba lỗ xám',
-          slug: 'ao-balo-xam',
-          imageUrl: '/assets/uploads/aobalo-1.jpg',
+          name: 'Áo ba lỗ 1',
+          slug: 'ao-balo-1',
+          imageUrl: [
+            '/assets/uploads/aobalo-1.1.jpg',
+            '/assets/uploads/aobalo-1.2.jpg',
+            '/assets/uploads/aobalo-1.3.jpg',
+            '/assets/uploads/aobalo-1.4.jpg',
+            '/assets/uploads/aobalo-1.5.jpg',
+            '/assets/uploads/aobalo-1.6.jpg',
+            '/assets/uploads/aobalo-1.7.jpg'
+          ],
           price: 100000,
           stock: 10,
-          categories: [balo],
-          description: 'Áo ba lỗ xám logo đen'
+          categories: [balo]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f06'),
           sku: 'MS006',
-          name: 'Áo ba lỗ đen',
-          slug: 'ao-balo-den',
+          name: 'Áo ba lỗ 2',
+          slug: 'ao-balo-2',
           imageUrl: '/assets/uploads/aobalo-2.jpg',
           price: 100000,
           stock: 20,
-          categories: [balo],
-          description: 'Áo ba lỗ đen trơn'
+          categories: [balo]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f07'),
           sku: 'MS007',
-          name: 'Áo khoác đen',
-          slug: 'ao-khoac-den',
+          name: 'Áo khoác 1',
+          slug: 'ao-khoac-1',
           imageUrl: '/assets/uploads/aokhoac-1.jpg',
           price: 300000,
           stock: 10,
-          categories: [khoac],
-          description: 'Áo khoác đen trơn'
+          categories: [khoac]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f08'),
           sku: 'MS008',
-          name: 'Áo khoác kem',
-          slug: 'ao-khoac-kem',
+          name: 'Áo khoác 2',
+          slug: 'ao-khoac-2',
           imageUrl: '/assets/uploads/aokhoac-2.jpg',
           price: 300000,
           stock: 20,
-          categories: [khoac],
-          description: 'Áo khoác kem trơn'
+          categories: [khoac]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f09'),
           sku: 'MS009',
-          name: 'Áo vest bạc',
-          slug: 'ao-vest-bac',
+          name: 'Áo vest 1',
+          slug: 'ao-vest-1',
           imageUrl: '/assets/uploads/aovest-1.jpg',
           price: 1000000,
           stock: 10,
-          categories: [vest],
-          description: 'Áo vest bạc lịch lãm'
+          categories: [vest]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f10'),
           sku: 'MS010',
-          name: 'Áo vest xám',
-          slug: 'ao-vest-xam',
+          name: 'Áo vest 2',
+          slug: 'ao-vest-2',
           imageUrl: '/assets/uploads/aovest-2.jpg',
           price: 1000000,
           stock: 20,
-          categories: [vest],
-          description: 'Áo vest xám lịch lãm'
+          categories: [vest]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f11'),
           sku: 'MS011',
-          name: 'Quần jean trắng',
-          slug: 'quan-jean-trang',
+          name: 'Quần jean 1',
+          slug: 'quan-jean-1',
           imageUrl: '/assets/uploads/quanjean-1.jpg',
           price: 400000,
           stock: 10,
-          categories: [jean],
-          description: 'Quần jean trắng cá tính'
+          categories: [jean]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f12'),
           sku: 'MS012',
-          name: 'Quần jean đen',
-          slug: 'quan-jean-den',
+          name: 'Quần jean 2',
+          slug: 'quan-jean-2',
           imageUrl: '/assets/uploads/quanjean-2.jpg',
           price: 400000,
           stock: 20,
-          categories: [jean],
-          description: 'Quần jean đen cá tính'
+          categories: [jean]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f13'),
           sku: 'MS013',
-          name: 'Quần kaki  nâu',
-          slug: 'quan-kaki-nau',
+          name: 'Quần kaki  1',
+          slug: 'quan-kaki-1',
           imageUrl: '/assets/uploads/quankaki-1.jpg',
           price: 200000,
           stock: 10,
-          categories: [kaki],
-          description: 'Quần kaki nâu mềm mại'
+          categories: [kaki]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f14'),
           sku: 'MS014',
-          name: 'Quần kaki xanh đen',
-          slug: 'quan-kaki-xanh-den',
+          name: 'Quần kaki 2',
+          slug: 'quan-kaki-2',
           imageUrl: '/assets/uploads/quankaki-2.jpg',
           price: 200000,
           stock: 20,
-          categories: [kaki],
-          description: 'Quần kaki xanh đen mềm mại'
+          categories: [kaki]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f15'),
           sku: 'MS015',
-          name: 'Quần tây đen',
-          slug: 'quan-tay-den',
+          name: 'Quần tây 1',
+          slug: 'quan-tay-1',
           imageUrl: '/assets/uploads/quantay-1.jpg',
           price: 250000,
           stock: 10,
-          categories: [tay],
-          description: 'Quần tây đen sang trọng'
+          categories: [tay]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f16'),
           sku: 'MS016',
-          name: 'Quần tây xanh',
-          slug: 'quan-tay-xanh',
+          name: 'Quần tây 2',
+          slug: 'quan-tay-2',
           imageUrl: '/assets/uploads/quantay-2.jpg',
           price: 250000,
           stock: 20,
-          categories: [tay],
-          description: 'Quần tây xanh sang trọng'
+          categories: [tay]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f17'),
           sku: 'MS017',
-          name: 'Quần short đen',
-          slug: 'quan-short-den',
+          name: 'Quần short 1',
+          slug: 'quan-short-1',
           imageUrl: '/assets/uploads/quanshort-1.jpg',
           price: 150000,
           stock: 10,
-          categories: [short],
-          description: 'Quần short đen dễ chịu'
+          categories: [short]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f18'),
           sku: 'MS018',
-          name: 'Quần short xám',
-          slug: 'quan-short-xam',
+          name: 'Quần short 2',
+          slug: 'quan-short-2',
           imageUrl: '/assets/uploads/quanshort-2.jpg',
           price: 150000,
           stock: 20,
-          categories: [short],
-          description: 'Quần short xám dễ chịu'
+          categories: [short]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f19'),
           sku: 'MS019',
-          name: 'Quần thun xám',
-          slug: 'quan-thun-xam',
+          name: 'Quần thun 1',
+          slug: 'quan-thun-1',
           imageUrl: '/assets/uploads/quanthun-1.jpg',
           price: 70000,
           stock: 10,
-          categories: [quanthun],
-          description: 'Quần thun xám thoải mái'
+          categories: [quanthun]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f20'),
           sku: 'MS020',
-          name: 'Quần thun đen',
-          slug: 'quan-thun-den',
+          name: 'Quần thun 2',
+          slug: 'quan-thun-2',
           imageUrl: '/assets/uploads/quanthun-2.jpg',
           price: 70000,
           stock: 20,
-          categories: [quanthun],
-          description: 'Quần thun đen thoải mái'
+          categories: [quanthun]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f21'),
           sku: 'MS021',
-          name: 'Giày xanh',
-          slug: 'giay-xanh',
+          name: 'Giày 1',
+          slug: 'giay-1',
           imageUrl: '/assets/uploads/giay-1.jpg',
           price: 250000,
           stock: 10,
-          categories: [giay],
-          description: 'Giày xanh cá tính'
+          categories: [giay]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f22'),
           sku: 'MS022',
-          name: 'Giày xám',
-          slug: 'giay-xam',
+          name: 'Giày 2',
+          slug: 'giay-2',
           imageUrl: '/assets/uploads/giay-2.jpg',
           price: 250000,
           stock: 20,
-          categories: [giay],
-          description: 'Giày xám cá tính'
+          categories: [giay]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f23'),
           sku: 'MS023',
-          name: 'Đồng hồ sọc pháp',
-          slug: 'dong-ho-soc-phap',
-          imageUrl: '/assets/uploads/dongho-1.jpg',
-          price: 550000,
+          name: 'Nón 1',
+          slug: 'non-1',
+          imageUrl: '/assets/uploads/non-1.jpg',
+          price: 150000,
           stock: 10,
-          categories: [dongho],
-          description: 'Đồng hồ da sọc xanh trắng đỏ'
+          categories: [non]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f24'),
           sku: 'MS024',
-          name: 'Đồng hồ da',
-          slug: 'dong-ho-da',
-          imageUrl: '/assets/uploads/dongho-2.jpg',
-          price: 550000,
+          name: 'Nón 2',
+          slug: 'non-2',
+          imageUrl: '/assets/uploads/non-2.jpg',
+          price: 250000,
           stock: 20,
-          categories: [dongho],
-          description: 'Đồng hồ da nâu'
+          categories: [non]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f25'),
           sku: 'MS025',
-          name: 'Túi xác nâu',
-          slug: 'tui-xach-nau',
+          name: 'Túi xác 1',
+          slug: 'tui-xach-1',
           imageUrl: '/assets/uploads/tuixach-1.jpg',
           price: 350000,
           stock: 10,
-          categories: [tuixach],
-          description: 'Túi xách nâu sành điệu'
+          categories: [tuixach]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f26'),
           sku: 'MS026',
-          name: 'Túi xách đen',
-          slug: 'tui-xach-den',
+          name: 'Túi xách 2',
+          slug: 'tui-xach-2',
           imageUrl: '/assets/uploads/tuixach-2.jpg',
           price: 350000,
           stock: 20,
-          categories: [tuixach],
-          description: 'Túi xách đen sành điệu'
+          categories: [tuixach]
+        }, {
+          _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f27'),
+          sku: 'MS027',
+          name: 'Mắt kính 1',
+          slug: 'Mat-kinh-1',
+          imageUrl: '/assets/uploads/matkinh-1.jpg',
+          price: 200000,
+          stock: 10,
+          categories: [matkinh]
+        }, {
+          _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f28'),
+          sku: 'MS028',
+          name: 'Mắt kính 2',
+          slug: 'mat-kinh-2',
+          imageUrl: '/assets/uploads/matkinh-2.jpg',
+          price: 300000,
+          stock: 20,
+          categories: [matkinh]
+        }, {
+          _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f29'),
+          sku: 'MS029',
+          name: 'Dây nịch 1',
+          slug: 'day-nich-1',
+          imageUrl: '/assets/uploads/daynich-1.jpg',
+          price: 200000,
+          stock: 10,
+          categories: [daynich]
+        }, {
+          _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f30'),
+          sku: 'MS030',
+          name: 'Dây nịch 2',
+          slug: 'day-nich-2',
+          imageUrl: '/assets/uploads/daynich-2.jpg',
+          price: 350000,
+          stock: 20,
+          categories: [daynich]
         })
         .then(function() {
           console.log('Finished populating products');

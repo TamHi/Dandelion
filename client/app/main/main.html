@@ -1,27 +1,6 @@
 <header>
-  
-</header>
-
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Featured products:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="product in main.products">
-        <li>
-          <a ui-sref="viewProduct({id: product._id})" tooltip="{{product.description}}">{{ product.name }} -
-            <span class="text-muted">{{ product.price | currency }}</span>
-          </a>
-        </li>
-      </ul>
-    </div>
+  <div class="header-content">
+    <h1>Fashions fade, style is eternal!</h1>
+    <a ui-sref="products" class="btn btn-primary">Shop now<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
   </div>
-
-  <form class="thing-form">
-    <label>Sell your Products</label>
-    <p class="input-group">
-      <span class="input-group-btn">
-        <button class="btn btn-primary" ui-sref="newProduct()">Add New</button>
-      </span>
-    </p>
-  </form>
-</div>
+</header>

@@ -8,7 +8,7 @@
     </span>
     <a class="btn btn-default add-to-cart" ng-click="ngCart.addItem(id, name, price, q, data)" ng-transclude></a>
   </span>
-  <mark  ng-show="inCart()">
-    <a class="btn btn-success" ng-click="ngCart.removeItemById(id)">Added</a>
-  </mark>
+  <span  ng-show="inCart()">
+    <a class="btn btn-success" ng-click="ngCart.removeItemById(id)">Xóa khỏi giỏ</a>
+  </span>
 </span>

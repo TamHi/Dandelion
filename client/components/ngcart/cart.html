@@ -4,7 +4,7 @@
 <div class="row cart-product" ng-repeat="item in ngCart.getCart().items track by $index">
   <div class="col-md-5">
     <div class="img-wrapper">
-      <img class= "pull-right" src="{{item.getData().imageUrl}}" alt="{{item.getName()}}" />
+      <img class= "pull-right" src="{{item.getData().imageUrl[0]}}" alt="{{item.getName()}}" />
     </div>
   </div>
   <div class="col-md-7">

@@ -1,23 +1,3 @@
-.padding-right {
-  padding-right: 0;
-}
-
-.features_items{
-  overflow:hidden;
-}
-
-
-h2.title {
-  color: #FE980F;
-  font-family: 'Roboto', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  margin: 0 15px;
-  text-transform: uppercase;
-  margin-bottom: 30px;
-  position: relative;
-}
-
 .toolbox {
   padding: 15px 0;
   border: 1px solid #f5f5f5;
@@ -45,75 +25,163 @@ h2.title {
   .sort-group {
     .btn {
       display: inline-block;
-      background: #ffb214;
+      background: $red;
       color: #FFF;
       width: 80px;
-      border-color: #FE980F;
+      border-color: darken($red, 10%);
 
       &:hover {
-        background: #FE980F
+        background: darken($red, 10%);
       }
     }
 
     .btn.active {
-      background: #FE980F
+      background: darken($red, 10%);
     }
   }
 }
 
-.product-image-wrapper{
-  border:1px solid #F7F7F5;
+// ITEM DISPLAY
+.single-item {
+
+  margin-bottom: 30px;
+
+  .product-info > .product-name {
+    text-transform: uppercase;
+    color: $red;
+  }
+
+  .product-image-wrapper{
+    background-color: #F3F3F3;
+    position: relative;
+    border:1px solid #F7F7F5;
+    overflow: hidden;
+    margin-bottom: 10px;
+    overflow: hidden;
+
+    height: 320px;
+    // width: 100%;
+
+    img {
+      width: 100%;
+      @include transition( 0.3s ease-in-out );
+    }
+
+    &:hover {
+      background-color: black;
+      img {
+        opacity: 0.5;
+        @include scale(1.2, 1.2);
+      }
+
+      .hover-box {
+        display: block;
+      }
+    }
+
+    .hover-box {
+      position: absolute;
+      display: none;
+      top: 50%;
+      left: 50%;
+      @include translate(-50%, -50%);
+      @include transition-duration(.3s);
+      
+      // Add to cart btn
+      .btn-default {
+        background-color: $red;
+        border: none;
+        color: white;
+        text-transform: uppercase;
+        @include transition-duration(.2s);
+
+        &:hover {
+          background-color: darken($red, 10%);
+        }
+      }
+
+      .btn-success {
+        background-color: $red;
+        border: none;
+        color: white;
+        text-transform: uppercase;
+        @include transition-duration(.2s);
+        
+        &:hover {
+          background-color: darken($red, 10%);
+        }
+
+      }
+    } 
+  }
+}
+
+// BACK TO TOP BTN - source: codyhouse
+.cd-top {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* image replacement properties */
   overflow: hidden;
-  margin-bottom:30px;
+  text-indent: 100%;
+  white-space: nowrap;
+  background: rgba(232, 98, 86, 0.8) url(/assets/images/cd-top-arrow.svg) no-repeat center 50%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+  -moz-transition: opacity .3s 0s, visibility 0s .3s;
+  transition: opacity .3s 0s, visibility 0s .3s;
+}
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: .5;
+}
+.no-touch .cd-top:hover {
+  background-color: #e86256;
+  opacity: 1;
+}
+@media only screen and (min-width: 768px) {
+  .cd-top {
+    right: 20px;
+    bottom: 20px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .cd-top {
+    height: 60px;
+    width: 60px;
+    right: 30px;
+    bottom: 30px;
+  }
 }
 
-.single-products {
-  position: relative;
+// PRODUCT DETAILS
+.product-thumbnail {
+  height: 430px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+  }
 }
 
-.productinfo h2{
-  color: #FE980F;
-  font-family: 'Roboto', sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.productinfo p{
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: #696763;
-}
-
-.productinfo img{
-  width: 100%;
-}
-
-.productinfo{
- position:relative;
-}
-
-.add-to-cart {
-  background:#F5F5ED;
-  border: 0 none;
-  border-radius: 0;
-  color: #696763;
-  font-family: 'Roboto', sans-serif;
-  font-size: 15px;
-  margin-bottom: 25px;
-}
-
-.add-to-cart:hover {
-  background: #FE980F;
-  border: 0 none;
-  border-radius: 0;
-  color: #FFFFFF;
-}
-
-.add-to{
-  margin-bottom: 10px;
-}
-
-.add-to-cart i{
-  margin-right:5px;
+.product-thumbs {
+  img {
+    width: 100%;
+    margin-bottom: 15px;
+  }
 }
