@@ -428,6 +428,51 @@ User.find({}).removeAsync()
       password: 'test2'
     }, {
       provider: 'local',
+      name: 'Bùi Lê Vũ Tâm',
+      email: 'blvtam@example.com',
+      password: 'vutam'
+    }, {
+      provider: 'local',
+      name: 'Đào Kim Thư',
+      email: 'dkthu@example.com',
+      password: 'kimthu'
+    }, {
+      provider: 'local',
+      name: 'Lê Cẩm Thoa',
+      email: 'lcthoa@example.com',
+      password: 'camthoa'
+    }, {
+      provider: 'local',
+      name: 'Trần Chí Khang',
+      email: 'tckhang@example.com',
+      password: 'chikhang'
+    }, {
+      provider: 'local',
+      name: 'Lê Minh Trí',
+      email: 'lmtri@example.com',
+      password: 'minhtri'
+    }, {
+      provider: 'local',
+      name: 'Nguyễn Thành Đạt',
+      email: 'ntdat@example.com',
+      password: 'thanhdat'
+    }, {
+      provider: 'local',
+      name: 'Bùi Hữu Sáng',
+      email: 'bhsang@example.com',
+      password: 'huusang'
+    }, {
+      provider: 'local',
+      name: 'Huỳnh Tấn Sang',
+      email: 'htsang@example.com',
+      password: 'tansang'
+    }, {
+      provider: 'local',
+      name: 'Lâm Tấn Lộc',
+      email: 'ltloc@example.com',
+      password: 'tanloc'
+    }, {
+      provider: 'local',
       role: 'admin',
       name: 'Admin',
       email: 'admin@example.com',

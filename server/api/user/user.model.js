@@ -3,14 +3,15 @@
 import crypto from 'crypto';
 var mongoose = require('bluebird').promisifyAll(require('mongoose'));
 import {Schema} from 'mongoose';
+import Address from '../address/address.model';
 import Cart from '../cart/cart.model';
 
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var UserSchema = new Schema({
   name: String,
-  // numAddresses: Number,
-  // numOrders: Number,
+  numAddresses: { type: Number, default: 0 },
+  numOrders: { type: Number, default: 0 },
   // gender: Boolean,
   // birthday: Date,
   email: {

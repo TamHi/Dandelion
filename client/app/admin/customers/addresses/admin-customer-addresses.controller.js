@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('dandelionApp.admin')
-  .controller('AdminCustomersCtrl', function($scope, User, $timeout) {
-    $scope.loading = true;
+  .controller('AdminCustomerAddressesCtrl', function($scope, Address, $stateParams) {
 
-    User.query().$promise
-      .then(users => {
-        $scope.users = users;
+  	$scope.loading = true;
+
+    Address.user({id: $stateParams.id}).$promise
+      .then(addresses => {
+        $scope.addresses = addresses;
         $scope.loading = false;
       });
 
@@ -17,8 +18,7 @@ angular.module('dandelionApp.admin')
 	    $scope.predicate = predicate;
 	  };
 
-    // $scope.delete = function(user) {
-    //   user.$remove();
-    //   $scope.users.splice($scope.users.indexOf(user), 1);
-    // }
+    // $scope.addresses = Address.user({id: $stateParams.id});
+    		
+
   });

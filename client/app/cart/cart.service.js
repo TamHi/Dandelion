@@ -6,6 +6,7 @@ angular.module('dandelionApp')
   	var listenCartChanged;
   	var updateUserCart = function() {
   		var contents = angular.copy(ngCart.getItems());
+      console.log(contents);
 			angular.forEach(contents, function(value) {
 				value.product = value._id;
 				value.quantity = value._quantity;
@@ -13,7 +14,9 @@ angular.module('dandelionApp')
 				delete value._name;
 				delete value._price;
 				delete value._quantity;
+        delete value._data;
 			});
+      console.log(contents);
 			
 			$http.put('/api/carts/' + Auth.getCurrentUser()._id, {
 				items: contents
@@ -27,6 +30,7 @@ angular.module('dandelionApp')
     		// console.log('S');
 
     		listenCartChanged = $rootScope.$on('ngCart:change', function() {
+          console.log('change');
     			updateUserCart();
     		});		
     	},

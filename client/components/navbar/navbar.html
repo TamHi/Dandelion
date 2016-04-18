@@ -1,4 +1,4 @@
-<nav  ng-hide="isAdminState"
+<nav  ng-if="!isAdminState"
       class="navbar navbar-default" 
       ng-class="{'navbar-fixed-top main-navbar' : currentState == 'main', 'navbar-fixed-top' : currentState == 'products' }">
     <!-- {{currentState}} -->

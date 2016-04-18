@@ -29,7 +29,7 @@ angular.module('dandelionApp')
   		var items = [];
 	  	_.each(ngCart.getCart().items, function(item) {
 				items.push({
-					_id: item._id,
+					product: item._id,
 					quantity: item._quantity,
 					total: item.getTotal()
 				})
@@ -44,7 +44,12 @@ angular.module('dandelionApp')
   				type: 'cash',
   				total: ngCart.totalCost()
   			})
-  				.then((res) => { console.log(res)});
+  				.then((res) => {
+            console.log(res);
+            console.log('Empty the cart');
+            ngCart.empty();
+            // $state.go('products');
+          });
   		}
   		else if (payload) {
   			$http.post('/api/orders', {
@@ -55,8 +60,8 @@ angular.module('dandelionApp')
   				nonce: payload.nonce
   			})
   				.then((res) => { 
-  					console.log(res)
-  					ngCart.empty(true);
+  					console.log(res);
+  					ngCart.empty();
             $state.go('products');
   				});	
 		

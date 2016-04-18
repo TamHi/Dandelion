@@ -11,6 +11,7 @@
 
 import _ from 'lodash';
 import Address from './address.model';
+// import User from '../user/user.model';
 import request from 'request';
 
 function respondWithResult(res, statusCode) {
@@ -121,6 +122,10 @@ export function show(req, res) {
 export function create(req, res) {
   Address.createAsync(req.body)
     .then(respondWithResult(res, 201))
+    // .then(() => {
+    //   // console.log(req.user._id);
+    //   User.update({_id: req.params.id}, {$inc: {numAddresses: 1}}).exec();
+    // })
     .catch(handleError(res));
 }
 
@@ -141,5 +146,9 @@ export function destroy(req, res) {
   Address.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
+    // .then(() => {
+    //   // console.log(req.user._id);
+    //   User.update({_id: req.params.id}, {$inc: {numAddresses: -1}}).exec();
+    // })
     .catch(handleError(res));
 }

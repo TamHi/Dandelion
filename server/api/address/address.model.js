@@ -1,6 +1,7 @@
 'use strict';
 
 var mongoose = require('bluebird').promisifyAll(require('mongoose'));
+import User from '../user/user.model';
 
 var AddressSchema = new mongoose.Schema({
   uid: {
@@ -34,18 +35,29 @@ var AddressSchema = new mongoose.Schema({
 });
 
 AddressSchema
+  .pre('save', function(next) {
+    this.wasNew = this.isNew;
+    next();
+  })
+
   .post('save', function(doc, next) {
-    // console.log(doc.name);
+    if(this.wasNew){
+      User.update({_id: doc.uid}, {$inc: {numAddresses: 1}}).exec();
+    }
+
     if(doc.default === true) {
       this.unDefaulOther(doc._id, doc.uid);
       next();
     }
   })
 
+  .post('remove', function(doc) {
+    User.update({_id: doc.uid}, {$inc: {numAddresses: -1}}).exec();
+  })
+
 AddressSchema.methods = {
   
   unDefaulOther(id, uid) {
-    // console.log('unDefaulOther');
     this.model('Address').update({
       uid: uid, 
       _id: { $ne: id} ,

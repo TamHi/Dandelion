@@ -9,11 +9,14 @@ angular.module('dandelionApp.admin')
       .state('admin', {
         url: '/admin',
         templateUrl: 'app/admin/admin.html',
-        // controller: 'AdminController',
-        // controllerAs: 'admin',,
-        controller: 'RDashMasterCtrl',
+        controller: 'AdminController',
+        // controllerAs: 'admin',
         authenticate: 'admin'
       })
+
+        /*
+          DASHBOARD
+         */
         .state('admin.dashboard' , {
           url: '/dashboard',
           // templateUrl: 'app/admin/customers/customers.html',
@@ -22,19 +25,31 @@ angular.module('dandelionApp.admin')
           authenticate: 'admin'
         })
 
+        /*
+          CUSTOMERS
+         */
         .state('admin.customers' , {
           url: '/customers',
           templateUrl: 'app/admin/customers/customers.html',
           controller: 'AdminCustomersCtrl',
           authenticate: 'admin'
         })
-          .state('admin.customers.detail' , {
-            url: '/customers/:id',
-            templateUrl: 'app/admin/customers/customer-detail.html',
-            controller: 'AdminCustomersDetailCtrl',
+          .state('admin.customers-addresses' , {
+            url: '/customers/:id/addresses',
+            templateUrl: 'app/admin/customers/addresses/admin-customer-addresses.html',
+            controller: 'AdminCustomerAddressesCtrl',
+            authenticate: 'admin'
+          })
+          .state('admin.customers-orders' , {
+            url: '/customers/:id/orders',
+            templateUrl: 'app/admin/customers/orders/admin-customer-orders.html',
+            controller: 'AdminCustomerOrdersCtrl',
             authenticate: 'admin'
           })
 
+        /*
+          PRODUCTS
+         */
         .state('admin.products' , {
           url: '/products',
           templateUrl: 'app/admin/products/products.html',
@@ -54,6 +69,9 @@ angular.module('dandelionApp.admin')
           authenticate: 'admin'
         })
 
+        /*
+          ORDERS
+         */
         .state('admin.orders' , {
           url: '/orders',
           templateUrl: 'app/admin/orders/orders.html',

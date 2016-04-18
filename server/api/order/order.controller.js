@@ -11,6 +11,7 @@
 
 import _ from 'lodash';
 import Order from './order.model';
+import User from '../user/user.model';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -62,17 +63,23 @@ function handleError(res, statusCode) {
 // Gets a list of Orders
 export function index(req, res) {
   Order.find()
-    // .populate('user')
-    // .populate('shippingAddress')
+    .populate('user')
+    .populate('shippingAddress')
+    .populate('items.product')
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
 // Gets a list of Orders
 export function userOrder(req, res) {
-  Order.findAsync(req.params.id)
-    // .populate('user')
-    // .populate('shippingAddress')
+  Order.find({user: req.params.id})
+    // .then((orders) => {
+    //   console.log(req.params.id);
+    //   console.log(orders);
+    // })
+    .populate('user')
+    .populate('shippingAddress')
+    .populate('items.product')
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
@@ -87,7 +94,6 @@ export function show(req, res) {
 
 // Creates a new Order in the DB
 export function create(req, res) {
-  // console.log(req.body.nonce);
   Order.createAsync({
     user: req.user._id,
     shippingAddress: req.body.shippingAddress,
@@ -95,7 +101,6 @@ export function create(req, res) {
     total: req.body.total,
     type: req.body.type,
     nonce: req.body.nonce
-    // nonce: 'fake-processor-declined-visa-nonce'
   })
     .then(respondWithResult(res, 201))
     .catch(handleError(res));

@@ -87,6 +87,7 @@ export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
+  console.log(req.body.items);
   Cart.updateAsync({_id: req.params.id}, {
     items: req.body.items
   })

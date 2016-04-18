@@ -12,7 +12,7 @@ router.get('/district/:id/ward', controller.ward);
 // router.get('/', controller.index);
 router.get('/user/:id', auth.isAuthenticated(), controller.userAddress);
 router.get('/:id', controller.show);
-router.post('/', controller.create);
+router.post('/', auth.isAuthenticated(), controller.create);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);

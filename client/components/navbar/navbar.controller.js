@@ -1,5 +1,5 @@
 angular.module('dandelionApp')
-  .controller('NavbarCtrl', function ($rootScope, $scope, Auth, $aside, ngCart) {
+  .controller('NavbarCtrl', function ($scope, Auth, $aside, ngCart, $state) {
 
     // $scope.menu = [{
     //   'title': 'Trang chủ',

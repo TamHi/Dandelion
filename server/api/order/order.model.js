@@ -5,7 +5,8 @@ var mongoose = require('bluebird').promisifyAll(require('mongoose'));
 var Braintree = require('../braintree/braintree.model');
 var fx = require('money');
 var request = require('request');
-// console.log(fx);
+
+import User from '../user/user.model';
 
 var convertToTUSD = function(amount, cb) {
   // console.log(amount);
@@ -27,14 +28,6 @@ var convertToTUSD = function(amount, cb) {
   })
     
 };
-
-// convertToTUSD(100000)
-//   .then(function(amount) {
-//     console.log('Callback');
-//     console.log(amount);
-//   });
-    
-
 
 var OrderDetailsSchema = new mongoose.Schema({
 	product: {
@@ -81,6 +74,23 @@ var OrderSchema = new mongoose.Schema({
   nonce: String,
   type: String
 });
+
+OrderSchema
+  .pre('save', function(next) {
+    this.wasNew = this.isNew;
+    next();
+  })
+
+  .post('save', function(doc) {
+    if(this.wasNew) {
+      User.update({_id: doc.user}, {$inc: {numOrders: 1}}).exec();
+    }
+  })
+  .post('remove', function(doc) {
+    console.log('Remove');
+    User.update({_id: doc.user}, {$inc: {numOrders: -1}}).exec();
+  })
+
 
 OrderSchema.pre('validate', function (next) {
   console.log('Validate');
