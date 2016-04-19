@@ -1,6 +1,5 @@
-<h2 class="title text-center">Thêm mới sản phẩm</h2>
 <form class="form-horizontal" role="form"
 			ng-submit="createProduct()">
-
-	<div ng-include="'app/products/templates/_product_form.html'"></div>
+	
+	<product-form title="Create product" product="product" catalogs="catalogs"></product-form>
 </form>

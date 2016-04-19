@@ -1,36 +1,63 @@
-<h2 class="title text-center">Kho hàng</h2>
-
-<div class="col-lg-12">
-  <div class="box">
-    <div class="box-header">
-      <h2><i class="icon-gift"></i><span class="break"></span>{{products.length}} Sản phẩm</h2>
-
-      <a href="admin/products/create" class="btn btn-default pull-right"><i></i>Thêm mới</a>
-    </div>
-    <div class="box-content">
-      <table class="table table-bordered table-striped table-condensed">
-        <thead>
-          <tr>
-            <th data-type="id" style="width: 120px">#</th>
-            <th data-type="sku" style="display: table-cell;">SKU</th>
-            <th data-type="name" style="display: table-cell;">Tên sản phẩm</th>
-            <th data-type="stock_level" style="display: table-cell;">Tồn kho</th>
-            <th data-type="buttons" style="width: 90px">&nbsp;</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="product in products">
-            <td>{{product._id}}</td>
-            <td style="display: table-cell;">{{product.sku}}</td>
-            <td class="title" style="display: table-cell;">{{product.name}}</td>
-            <td style="display: table-cell;">{{product.stock}}</td>
-            <td>
-              <a href="admin/products/edit/{{product._id}}" class="btn btn-info"><i class="fa fa-pencil"></i></a>
-              <a ng-click="delete(product)" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="widget">
+      <div class="widget-header">
+        <div class="row">
+          <div class="pull-left"><i class="fa" ng-class="icon"></i> 
+            Products
+          </div>
+          <div class="pull-right col-xs-6 col-sm-4">
+            <div class="row">
+              <div class="col-xs-10">
+                <input type="text" placeholder="Search" class="form-control input-sm" ng-model="query">    
+              </div>
+              <div class="col-xs-2">
+                <a ui-sref="admin.createProduct" class="btn btn-success"><i class="fa fa-plus"></i></a>    
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="widget-body no-padding">
+        <rd-loading ng-show="loading"></rd-loading>
+        <div ng-hide="loading" class="widget-content">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th width="10%" ng-click="order('createAt')">#</th>
+                  <th width="10%" ng-click="order('shippingAddress.name')">SKU</th>
+                  <th width="10%" ng-click="order('shippingAddress.name')">Hình ảnh</th>
+                  <th width="20%">Tên sản phẩm</th>
+                  <th width="20%">Loại sản phẩm</th>
+                  <th width="10%" ng-click="order('shippingStatus')">Giá</th>
+                  <th width="10%" ng-click="order('paymentStatus')">Tồn kho</th>
+                  <th width="10%"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="product in products | orderBy:predicate:reverse | filter:query">
+                  <td style="vertical-align:middle">{{product._id}}</td>
+                  <td style="vertical-align:middle">{{product.sku}}</td>
+                  <td style="vertical-align:middle">
+                    <div class="img-wrapper" style="width: 50px; height: 60px">
+                      <img src="{{product.imageUrl[0]}}" alt="Hình ảnh" style="width: 100%">
+                    </div>
+                  </td>
+                  <td style="vertical-align:middle">{{product.name}}</td>
+                  <td style="vertical-align:middle">{{product.categories.name}}</td>
+                  <td style="vertical-align:middle">{{product.price | currency:undefined:0}}</td>
+                  <td style="vertical-align:middle">{{product.stock}}</td>
+                  <td style="vertical-align:middle">
+                    <a ui-sref="admin.editProduct({id: product._id})" class="btn btn-default"><i class="fa fa-pencil"></i></a>
+                    <a ng-click="delete(order)" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>  
+        </div>
+      </div>
     </div>
   </div>
 </div>

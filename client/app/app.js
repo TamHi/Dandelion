@@ -16,7 +16,8 @@ angular.module('dandelionApp', [
   'ngAside',
   'angularSlideables',
   'underscore',
-  'RDash'
+  'RDash',
+  'slick'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

@@ -56,13 +56,13 @@ angular.module('dandelionApp.admin')
           controller: 'AdminProductsCtrl',
           authenticate: 'admin'
         })
-        .state('admin.createProducts', {
+        .state('admin.createProduct', {
           url: '/products/create',
           templateUrl: 'app/admin/products/create-product.html',
           controller: 'AdminProductCreateCtrl',
           authenticate: 'admin'
         })
-        .state('admin.editProducts', {
+        .state('admin.editProduct', {
           url: '/products/edit/:id',
           templateUrl: 'app/admin/products/edit-product.html',
           controller: 'AdminProductEditCtrl',

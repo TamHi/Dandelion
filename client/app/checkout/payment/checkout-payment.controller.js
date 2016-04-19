@@ -48,7 +48,7 @@ angular.module('dandelionApp')
             console.log(res);
             console.log('Empty the cart');
             ngCart.empty();
-            // $state.go('products');
+            $state.go('products');
           });
   		}
   		else if (payload) {

@@ -14,13 +14,20 @@ import Product from './product.model';
 import Catalog from '../catalog/catalog.model';
 import path from 'path';
 
-function saveFile(res, file) {
+function saveFile(res, files) {
   // console.log('saveFile');
   return function(entity) {
+    var pathArr = [];
     // console.log(file.path);
-    var newPath = '/assets/uploads/' + path.basename(file.path);
+    _.forEach(files, function(file) {
+      var newPath = '/assets/uploads/' + path.basename(file.path);
+      pathArr.push(newPath);
+    })
+    // var newPath = '/assets/uploads/' + path.basename(file.path);
     // console.log(newPath);
-    entity.imageUrl = newPath;
+    // entity.imageUrl = newPath;
+    // console.log(pathArr);
+    entity.imageUrl = pathArr;
     return entity.saveAsync().spread(function(updated) {
       // console.log(updated);
       return updated;
@@ -143,14 +150,18 @@ export function destroy(req, res) {
 
 // Uploads a new Product's image in the DB
 export function upload(req, res) {
-  var file = req.files.file;
-  if(!file) {
+  // console.log('Upload');
+  // console.log(req.files);
+  var files = req.files.file;
+  // console.log('Files');
+  // console.log(files);
+  if(!files) {
     return handleError(res)('File not provided');
   }
 
   Product.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
-    .then(saveFile(res, file))
+    .then(saveFile(res, files))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

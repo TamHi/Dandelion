@@ -15,18 +15,18 @@
         <rd-loading ng-show="loading"></rd-loading>
         <div ng-hide="loading" class="widget-content">
           <div class="table-responsive">
-            <table class="table">
+            <table class="table table-striped">
               <thead>
                 <tr>
-                  <th width="15%">Thời gian</th>
-                  <th width="10%" ng-click="order('name')">Họ tên</th>
-                  <th width="5%" ng-click="order('name')">SĐT</th>
-                  <th width="25%" ng-click="order('name')">Địa chỉ</th>
-                  <th width="5%" ng-click="order('phone')">Giao hàng</th>
-                  <th width="5%">Thanh toán</th>
-                  <th width="5%">Sản phẩm</th>
-                  <th width="5%" ng-click="order('default')">Tổng cộng</th>
-                  <th width="5%" ng-click="order('default')">Phương thức</th>
+                  <th width="10%" ng-click="order('createAt')">Thời gian</th>
+                  <th width="15%" ng-click="order('shippingAddress.name')">Họ tên</th>
+                  <th width="5%">SĐT</th>
+                  <th width="25%">Địa chỉ</th>
+                  <th width="5%" ng-click="order('shippingStatus')">Giao hàng</th>
+                  <th width="5%" ng-click="order('paymentStatus')">Thanh toán</th>
+                  <th width="5%" ng-click="order('items.length')">Sản phẩm</th>
+                  <th width="5%" ng-click="order('total')">Tổng cộng</th>
+                  <th width="5%" ng-click="order('type')">Phương thức</th>
                   <th width="10%"></th>
                 </tr>
               </thead>
@@ -38,14 +38,19 @@
                   <td style="vertical-align:middle">
                     {{order.shippingAddress.street}}, {{order.shippingAddress.ward.title}}, {{order.shippingAddress.district.title}}, {{order.shippingAddress.city.title}}
                   </td>
-                  <td style="vertical-align:middle">{{order.shippingStatus}}</td>
-                  <td style="vertical-align:middle">{{order.paymentStatus}}
+                  <td style="vertical-align:middle">
+                    <span class="yet" ng-show="order.shippingStatus">Shipped</span>
+                    <span class="not-yet" ng-hide="order.shippingStatus">Unshipped</span>
+                  </td>
+                  <td style="vertical-align:middle">
+                    <span class="yet" ng-show="order.paymentStatus">Paid</span>
+                    <span class="not-yet" ng-hide="order.paymentStatus">Unpaid</span>
                   </td>
                   <td style="vertical-align:middle">
                     <a href="" ng-click="openModal(order._id)">{{order.items.length}}</a>
                   </td>
                   <td style="vertical-align:middle">{{order.total | currency:undefined:0}}</td>
-                  <td style="vertical-align:middle">{{order.type}}</td>
+                  <td style="vertical-align:middle">{{order.type | uppercase }}</td>
                   <td style="vertical-align:middle">
                     <a ng-click="complete(order)" class="btn btn-success"><i class="fa fa-check"></i></a>
                     <a ng-click="delete(order)" class="btn btn-danger"><i class="fa fa-trash"></i></a>

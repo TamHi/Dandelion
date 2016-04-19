@@ -9,17 +9,17 @@ angular.module('dandelionApp')
       }
     });
 
-    resource.upload = function(file, productId) {
+    resource.upload = function(files, productId) {
       var d = $q.defer();
-      console.log(file);
+      console.log(files);
 
-      if (file && !file.$error) {
-        file.upload = Upload.upload({
+      if (files && !files.$error) {
+        files.upload = Upload.upload({
           url: '/api/products/'+productId+'/upload',
-          file: file
+          file: files
         });
 
-        file.upload.then(function (response) {
+        files.upload.then(function (response) {
           console.log(response);
           $timeout(function () {
             d.resolve(response.data);
@@ -30,11 +30,11 @@ angular.module('dandelionApp')
           }
         });
 
-        file.upload.progress(function (evt) {
+        files.upload.progress(function (evt) {
           d.notify({progress: Math.min(100, parseInt(100.0 * evt.loaded / evt.total))}, evt);
         });
       } else {
-        d.reject(file ? file.$error : 'No picture file');
+        d.reject(files ? files.$error : 'No picture file');
       }
       return d.promise;
     };

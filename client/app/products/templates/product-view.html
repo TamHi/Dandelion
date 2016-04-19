@@ -1,17 +1,32 @@
 <div class="container padding-top">
   <div class="col-md-4">
-    <div class="product-thumbnail">
+    <!-- <ul class="product-thumbnail">
+      <li class="col-md-2" ng-repeat="img in product.imageUrl">
+        <img ng-src="{{img}}">
+      </li>
       <img src="{{mainImageUrl}}" class="product">
-    </div>
+    </ul> -->
   </div>
   <div class="col-md-8">
     <h1>{{product.name}}</h1>
     <p>{{product.description}}</p>
-    <ul class="row product-thumbs">
-      <li class="col-md-2" ng-repeat="img in product.imageUrl">
-        <img ng-src="{{img}}" ng-click="setImage(img)">
-      </li>
-    </ul>
+    <slick  dots="true" 
+            init-onload="true" 
+            data="product.imageUrl" 
+            adaptiveHeight="true" 
+            arrow="true"
+            slidesToShow="5"
+            slidesToScroll="1"
+            focusOnSelect="true">
+      <div ng-repeat="pic in product.imageUrl" class="col-md-2">
+        <img ng-src="{{pic}}" width="100%">
+      </div>
+    </slick>
+    <!-- <div class="row product-thumbs">
+      <div class="col-md-2" ng-repeat="img in product.imageUrl">
+        <img ng-src="{{img}}">
+      </div>
+    </div> -->
   </div>
 </div>
   

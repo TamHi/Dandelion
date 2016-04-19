@@ -19,7 +19,7 @@
         <li ng-show="isAdmin()" ui-sref-active="active">
           <a ui-sref=".admin">Dashboard</a>
         </li>
-        <li ng-hide="isAdmin()" class="dropdown">
+        <li ng-show="isLoggedIn() && !isAdmin()" class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Account<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a ui-sref="account.edit">Information</a></li>
