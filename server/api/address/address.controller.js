@@ -105,7 +105,8 @@ export function index(req, res) {
 // Gets a list of Addresss
 export function userAddress(req, res) {
   // console.log(req.user._id);
-  Address.findAsync({ uid: req.params.id })
+  Address.find({ uid: req.params.id })
+    .populate('uid')
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

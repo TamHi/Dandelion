@@ -14,6 +14,13 @@ angular.module('dandelionApp.admin')
         $scope.loading = false;
       });
 
+    $scope.predicate = '-sku';
+    $scope.reverse = true;
+    $scope.order = function(predicate) {
+      $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+      $scope.predicate = predicate;
+    };
+
     $scope.delete = Modal.confirm.delete((product) => {
       console.log(product);
       Product.delete({id: product._id}).$promise

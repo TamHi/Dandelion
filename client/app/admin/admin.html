@@ -5,38 +5,38 @@
     <ul class="sidebar">
       <li class="sidebar-main">
         <a ng-click="toggleSidebar()">
-          Dashboard
+          Dandelion
           <span class="menu-icon glyphicon glyphicon-transfer" style="cursor: pointer"></span>
         </a>
       </li>
-      <li class="sidebar-title"><span>NAVIGATION</span></li>
+      <li class="sidebar-title"><span>MENU</span></li>
       <li class="sidebar-list">
-        <a ui-sref=".dashboard">Dashboard <span class="menu-icon fa fa-tachometer"></span></a>
+        <a ui-sref=".dashboard">Thống kê <span class="menu-icon fa fa-bar-chart"></span></a>
       </li>
       <li class="sidebar-list">
-        <a ui-sref=".customers">Customers <span class="menu-icon fa fa-table"></span></a>
+        <a ui-sref=".customers">Khách hàng <span class="menu-icon fa fa-users"></span></a>
       </li>
       <li class="sidebar-list">
-        <a ui-sref=".products">Products <span class="menu-icon fa fa-table"></span></a>
+        <a ui-sref=".products">Sản phẩm <span class="menu-icon fa fa-gift"></span></a>
       </li>
       <li class="sidebar-list">
-        <a ui-sref=".orders">Orders <span class="menu-icon fa fa-table"></span></a>
+        <a ui-sref=".orders">Đơn đặt hàng <span class="menu-icon fa fa-shopping-cart"></span></a>
       </li>
     </ul>
     <div class="sidebar-footer">
       <div class="col-xs-4">
-        <a href="https://github.com/rdash/rdash-angular" target="_blank">
+        <a href="https://github.com/TamHi/Dandelion" target="_blank">
           Github
         </a>
       </div>
       <div class="col-xs-4">
-        <a href="https://github.com/rdash/rdash-angular/blob/master/README.md" target="_blank">
+        <a href="https://github.com/TamHi/Dandelion/blob/master/README.md" target="_blank">
           About
         </a>
       </div>
       <div class="col-xs-4">
-        <a href="#">
-          Support
+        <a ui-sref="main">
+          Home
         </a>
       </div>
     </div>
@@ -47,7 +47,7 @@
     <div class="page-content">
 
       <!-- Header Bar -->
-      <div class="row header">
+      <!-- <div class="row header">
         <div class="col-xs-12">
           <div class="user pull-right">
             <div class="item dropdown" uib-dropdown>
@@ -106,7 +106,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- End Header Bar -->
 
       <!-- Main Content -->
@@ -115,22 +115,3 @@
     </div><!-- End Page Content -->
   </div><!-- End Content Wrapper -->
 </div><!-- End Page Wrapper -->
-
-<!-- <div class="container padding-top">
-  <div class="row">
-    <div class="col-md-3 left-sidebar">
-      <h2>Phòng làm việc</h2>
-      <ul class="panel panel-default settings-panel">
-        <div class="panel-body">
-          <li ui-sref-active="active"><a ui-sref=".customers">Danh sách khách hàng</a></li>
-          <li ui-sref-active="active"><a ui-sref=".products">Kho hàng</a></li>
-          <li ui-sref-active="active"><a ui-sref=".orders">Danh sách đơn hàng</a></li>
-        </div>
-      </ul>
-
-    </div>
-    <div class="col-sm-9 padding-right">
-      <div ui-view></div>
-    </div>
-  </div>
-</div> -->

@@ -4,10 +4,11 @@
       <div class="widget-header">
         <div class="row">
           <div class="pull-left"><i class="fa" ng-class="icon"></i> 
-            Customers 
+            <i class="fa fa-users"></i>
+            Khách hàng - {{users.length}}
           </div>
           <div class="pull-right col-xs-6 col-sm-4">
-            <input type="text" placeholder="Search" class="form-control input-sm" ng-model="query">    
+            <input type="text" placeholder="Tìm kiếm" class="form-control input-sm" ng-model="query">    
           </div>
         </div>
       </div>
@@ -21,11 +22,11 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th width="30%">#</th>
-                  <th width="20%">Full Name</th>
+                  <th width="25%">#</th>
+                  <th width="20%">Họ tên</th>
                   <th width="20%">Email</th>
-                  <th width="10%" ng-click="order('numAddresses')">Addresses</th>
-                  <th width="10%" ng-click="order('numOrders')">Orders</th>
+                  <th width="12.5%" ng-click="order('numAddresses')">Địa chỉ</th>
+                  <th width="12.5%" ng-click="order('numOrders')">Đơn đặt hàng</th>
                   <th width="10%"></th>
                 </tr>
               </thead>
@@ -35,10 +36,12 @@
                   <td style="vertical-align:middle">{{user.name}}</td>
                   <td style="vertical-align:middle">{{user.email}}</td>
                   <td style="vertical-align:middle">
-                    <a ui-sref="admin.customers-addresses({id: user._id})">{{user.numAddresses}}</a>
+                    <a ng-show="user.numAddresses > 0" ui-sref="admin.customers-addresses({id: user._id})">{{user.numAddresses}}</a>
+                    <span ng-hide="user.numAddresses > 0" style="color: #333">0</span>
                   </td>
                   <td style="vertical-align:middle">
-                    <a ui-sref="admin.customers-orders({id: user._id})">{{user.numOrders}}</a>
+                    <a ng-show="user.numOrders > 0" ui-sref="admin.customers-orders({id: user._id})">{{user.numOrders}}</a>
+                    <span ng-hide="user.numOrders > 0" style="color: #333">0</span>
                   </td>
                   <td style="vertical-align:middle">
                     <a ng-click="delete(user)" class="btn btn-danger"><i class="fa fa-trash"></i></a>

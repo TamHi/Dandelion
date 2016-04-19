@@ -20,7 +20,7 @@ angular.module('dandelionApp.admin')
         .state('admin.dashboard' , {
           url: '/dashboard',
           // templateUrl: 'app/admin/customers/customers.html',
-          templateUrl: 'components/rdash/templates/dashboard.html',
+          templateUrl: 'app/admin/dashboard/dashboard.html',
           // controller: 'AdminCustomersCtrl',
           authenticate: 'admin'
         })

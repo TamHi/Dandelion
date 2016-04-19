@@ -4,10 +4,10 @@
       <div class="widget-header">
         <div class="row">
           <div class="pull-left"><i class="fa" ng-class="icon"></i> 
-            Addresses
+            Sổ địa chỉ - {{addresses[0].uid.name}}
           </div>
           <div class="pull-right col-xs-6 col-sm-4">
-            <input type="text" placeholder="Search" class="form-control input-sm" ng-model="query">    
+            <input type="text" placeholder="Tìm kiếm" class="form-control input-sm" ng-model="query">    
           </div>
         </div>
       </div>
@@ -19,22 +19,24 @@
               <thead>
                 <tr>
                   <th width="20%">#</th>
-                  <th width="10%" ng-click="order('name')">Họ tên</th>
-                  <th width="10%" ng-click="order('phone')">Số điện thoại</th>
+                  <th width="10%">Họ tên</th>
+                  <th width="10%">Số điện thoại</th>
                   <th width="40%">Địa chỉ</th>
-                  <th width="10%" ng-click="order('default')">Mặc định</th>
+                  <th width="10%">Mặc định</th>
                   <th width="10%"></th>
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="address in addresses | orderBy:predicate:reverse | filter:query">
+                <tr ng-repeat="address in addresses | orderBy: '-default' | filter:query">
                   <td style="vertical-align:middle">{{address._id}}</td>
                   <td style="vertical-align:middle">{{address.name}}</td>
                   <td style="vertical-align:middle">{{address.phone}}</td>
                   <td style="vertical-align:middle">
                   	{{address.street}}, {{address.ward.title}}, {{address.district.title}}, {{address.city.title}}
                   </td>
-                  <td style="vertical-align:middle">{{address.default}}</td>
+                  <td style="vertical-align:middle">
+                    <i ng-show="address.default" class="fa fa-check-square-o"></i>
+                  </td>
                   <td style="vertical-align:middle">
                     <a ng-click="delete(address)" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                   </td>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dandelionApp.admin')
-  .controller('AdminCustomerOrdersCtrl', function($scope, Order, $stateParams, $uibModal, _) {
+  .controller('AdminCustomerOrdersCtrl', function($scope, Order, $stateParams, $uibModal, _, Modal) {
 
     $scope.loading = true;
 
@@ -19,6 +19,20 @@ angular.module('dandelionApp.admin')
 	    $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
 	    $scope.predicate = predicate;
 	  };
+
+	  $scope.complete = Modal.confirm.completeOrder((order) => {
+      console.log(order);
+      order.shippingStatus = true;
+      order.paymentStatus = true;
+      Order.update({id: order._id}, order);
+    });
+    $scope.delete = Modal.confirm.delete((order) => {
+      console.log(order);
+      Order.delete({id: order._id}).$promise
+        .then(() => {
+          $scope.orders.splice($scope.orders.indexOf(order), 1);
+        })
+    }); 
 
 	  $scope.openModal = (orderId) => {
 

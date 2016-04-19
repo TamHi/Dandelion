@@ -1,3 +1,6 @@
+$primary-color: #F44336;
+$dark-primary-color: #D32F2F;
+
 #content-wrapper {
   padding-left: 0;
   margin-left: 0;
@@ -215,7 +218,7 @@
 }
 
 #page-wrapper .row > div {
-  margin-bottom: 15px;
+  margin: 30px 0 15px 0;
 }
 
 .alerts-container .alert:last-child {
@@ -268,14 +271,14 @@ div.input-mask {
  * Sidebar
  */
 #sidebar-wrapper {
-  background: #30426a;
+  background: $primary-color;
 }
 ul.sidebar .sidebar-main a,
 .sidebar-footer,
 ul.sidebar .sidebar-list a:hover,
 #page-wrapper:not(.open) ul.sidebar .sidebar-title.separator {
   /* Sidebar header and footer color */
-  background: #2d3e63;
+  background: $dark-primary-color;
 }
 ul.sidebar {
   position: absolute;
@@ -312,7 +315,7 @@ ul.sidebar .sidebar-main .menu-icon {
   line-height: 60px;
 }
 ul.sidebar .sidebar-title {
-  color: #738bc0;
+  color: #FFF;
   font-size: 12px;
   height: 35px;
   line-height: 40px;
@@ -323,18 +326,19 @@ ul.sidebar .sidebar-list {
   height: 40px;
 }
 ul.sidebar .sidebar-list a {
-  text-indent: 25px;
-  font-size: 15px;
-  color: #b2bfdc;
+  text-indent: 40px;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #FFF;
   line-height: 40px;
 }
 ul.sidebar .sidebar-list a:hover {
   color: #fff;
   border-left: 3px solid #e99d1a;
-  text-indent: 22px;
+  text-indent: 32px;
 }
 ul.sidebar .sidebar-list a:hover .menu-icon {
-  text-indent: 25px;
+  text-indent: 35px;
 }
 ul.sidebar .sidebar-list .menu-icon {
   float: right;
@@ -373,7 +377,7 @@ ul.sidebar .sidebar-list .menu-icon {
   text-align: center;
 }
 .sidebar-footer div a {
-  color: #b2bfdc;
+  color: #FFCDD2;
   font-size: 12px;
   line-height: 43px;
 }
@@ -399,7 +403,7 @@ ul.sidebar .sidebar-list .menu-icon {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   background: #ffffff;
   border: 1px solid transparent;
-  border-radius: 2px;
+  border-radius: 4px;
   border-color: #e9e9e9;
 }
 .widget .widget-header .pagination,
@@ -407,8 +411,10 @@ ul.sidebar .sidebar-list .menu-icon {
   margin: 0;
 }
 .widget .widget-header {
-  color: #767676;
-  background-color: #f6f6f6;
+  color: #FFF;
+  background-color: #727272;
+  font-size: 16px;
+  font-weight: bold;
   padding: 10px 15px;
   border-bottom: 1px solid #e9e9e9;
   line-height: 30px;
@@ -424,6 +430,7 @@ ul.sidebar .sidebar-list .menu-icon {
 }
 .widget .widget-body table thead * {
   font-size: 14px !important;
+  color: #727272;
 }
 .widget .widget-body table tbody * {
   font-size: 13px !important;
@@ -451,7 +458,7 @@ ul.sidebar .sidebar-list .menu-icon {
 }
 .widget .widget-body {
   .drop-box {
-    pointer: cursor;
+    cursor: pointer;
     background: #F8F8F8;
     border: 5px dashed #DDD;
     width: 100%;
@@ -473,7 +480,7 @@ ul.sidebar .sidebar-list .menu-icon {
       }
 
       .delete {
-        color: $red;
+        color: $primary-color;
         cursor: pointer;
         position: absolute;
         display: none;

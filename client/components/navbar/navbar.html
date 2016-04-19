@@ -14,25 +14,25 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li ui-sref-active="active">
-          <a ui-sref="products">Shop</a>
+          <a ui-sref="products">Cửa hàng</a>
         </li>
         <li ng-show="isAdmin()" ui-sref-active="active">
-          <a ui-sref=".admin">Dashboard</a>
+          <a ui-sref="admin">Phòng làm việc</a>
         </li>
         <li ng-show="isLoggedIn() && !isAdmin()" class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Account<span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tài khoản<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a ui-sref="account.edit">Information</a></li>
-            <li><a ui-sref="account.addresses">Addresses</a></li>
-            <li><a ui-sref="account.orders">Orders</a></li>
+            <li><a ui-sref="account.edit">Thông tin tài khoản</a></li>
+            <li><a ui-sref="account.addresses">Sổ địa chỉ</a></li>
+            <li><a ui-sref="account.orders">Đơn đặt hàng</a></li>
           </ul>
         </li>
-        <li ng-show="isLoggedIn()"><a ui-sref="logout">Logout</a></li>
+        <li ng-show="isLoggedIn()"><a ui-sref="logout">Đăng xuất</a></li>
         <li ng-hide="isLoggedIn()" ui-sref-active="active">
-          <a ui-sref=".signup">Sign up</a>
+          <a ui-sref="signup">Đăng ký</a>
         </li>
         <li ng-hide="isLoggedIn()" ui-sref-active="active">
-          <a ui-sref=".login">Log in</a>
+          <a ui-sref="login">Đăng nhập</a>
         </li>
         <li>
           <a href="#" ng-click="showCart()">

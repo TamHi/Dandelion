@@ -41,7 +41,7 @@ angular.module('dandelionApp')
   			$http.post('/api/orders', {
   				shippingAddress: Checkout.getAddress()._id,
   				items: items,
-  				type: 'cash',
+  				type: 'Cash',
   				total: ngCart.totalCost()
   			})
   				.then((res) => {
