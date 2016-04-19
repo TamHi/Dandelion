@@ -3,7 +3,7 @@
  */
 
 angular
-    .module('RDash')
+    .module('dandelionApp.admin')
     .directive('rdWidgetFooter', rdWidgetFooter);
 
 function rdWidgetFooter() {

@@ -157,9 +157,7 @@ Catalog
             '/assets/uploads/aobalo-1.2.jpg',
             '/assets/uploads/aobalo-1.3.jpg',
             '/assets/uploads/aobalo-1.4.jpg',
-            '/assets/uploads/aobalo-1.5.jpg',
-            '/assets/uploads/aobalo-1.6.jpg',
-            '/assets/uploads/aobalo-1.7.jpg'
+            '/assets/uploads/aobalo-1.5.jpg'
           ],
           price: 100000,
           stock: 10,
@@ -169,7 +167,13 @@ Catalog
           sku: 'MS006',
           name: 'Áo ba lỗ 2',
           slug: 'ao-balo-2',
-          imageUrl: '/assets/uploads/aobalo-2.jpg',
+          imageUrl: [
+            '/assets/uploads/aobalo-2.1.jpg',
+            '/assets/uploads/aobalo-2.2.jpg',
+            '/assets/uploads/aobalo-2.3.jpg',
+            '/assets/uploads/aobalo-2.4.jpg',
+            '/assets/uploads/aobalo-2.5.jpg'
+          ],
           price: 100000,
           stock: 20,
           categories: [balo]
@@ -178,7 +182,13 @@ Catalog
           sku: 'MS007',
           name: 'Áo khoác 1',
           slug: 'ao-khoac-1',
-          imageUrl: '/assets/uploads/aokhoac-1.jpg',
+          imageUrl: [
+            '/assets/uploads/aokhoac-1.1.jpg',
+            '/assets/uploads/aokhoac-1.2.jpg',
+            '/assets/uploads/aokhoac-1.3.jpg',
+            '/assets/uploads/aokhoac-1.4.jpg',
+            '/assets/uploads/aokhoac-1.5.jpg'
+          ],
           price: 300000,
           stock: 10,
           categories: [khoac]
@@ -187,7 +197,13 @@ Catalog
           sku: 'MS008',
           name: 'Áo khoác 2',
           slug: 'ao-khoac-2',
-          imageUrl: '/assets/uploads/aokhoac-2.jpg',
+          imageUrl: [
+            '/assets/uploads/aokhoac-2.1.jpg',
+            '/assets/uploads/aokhoac-2.2.jpg',
+            '/assets/uploads/aokhoac-2.3.jpg',
+            '/assets/uploads/aokhoac-2.4.jpg',
+            '/assets/uploads/aokhoac-2.5.jpg'
+          ],
           price: 300000,
           stock: 20,
           categories: [khoac]

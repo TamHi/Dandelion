@@ -1,10 +1,4 @@
-/**
- * Loading Directive
- * @see http://tobiasahlin.com/spinkit/
- */
-
-angular
-    .module('RDash')
+angular.module('dandelionApp.admin')
     .directive('rdLoading', rdLoading);
 
 function rdLoading() {

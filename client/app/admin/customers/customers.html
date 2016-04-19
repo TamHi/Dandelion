@@ -12,17 +12,20 @@
         </div>
       </div>
       <div class="widget-body no-padding">
-        <rd-loading ng-show="loading"></rd-loading>
+        <div class="loading" ng-show="loading">
+          <div class="double-bounce1"></div>
+          <div class="double-bounce2"></div>
+        </div>
         <div ng-hide="loading" class="widget-content">
           <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
                   <th width="30%">#</th>
-                  <th width="20%"ng-click="order('name')">Full Name</th>
-                  <th width="20%"ng-click="order('email')">Email</th>
-                  <th width="10%"ng-click="order('numAddresses')">Addresses</th>
-                  <th width="10%"ng-click="order('numOrders')">Orders</th>
+                  <th width="20%">Full Name</th>
+                  <th width="20%">Email</th>
+                  <th width="10%" ng-click="order('numAddresses')">Addresses</th>
+                  <th width="10%" ng-click="order('numOrders')">Orders</th>
                   <th width="10%"></th>
                 </tr>
               </thead>
@@ -49,23 +52,3 @@
     </div>
   </div>
 </div>
-  
-<!-- <div class="row">
-  <div class="col-md-4">
-    <input type="text" ng-model="query">
-    <ul class="list-group user-list">
-      <li class="list-group-item" ng-repeat="user in users | filter:query">
-        <a ui-sref=".detail({id: user._id})">
-          <div class="user-info">
-              <strong>{{user.name}}</strong><br>
-              <span class="text-muted">{{user.email}}</span>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </div>
-
-  <div class="col-md-8">
-    <div ui-view></div>
-  </div>
-</div> -->

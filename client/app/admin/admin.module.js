@@ -2,5 +2,7 @@
 
 angular.module('dandelionApp.admin', [
   'dandelionApp.auth',
-  'ui.router'
+  'ui.router',
+  'ngCookies',
+  'ui.bootstrap'
 ]);

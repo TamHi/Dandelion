@@ -3,7 +3,7 @@
  */
 
 angular
-    .module('RDash')
+    .module('dandelionApp.admin')
     .directive('rdWidgetHeader', rdWidgetTitle);
 
 function rdWidgetTitle() {
