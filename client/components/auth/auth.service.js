@@ -71,15 +71,27 @@ function AuthService($location, $http, $cookies, $q, appConfig, Util, User) {
     },
 
     /**
-     * Change password
+     * Update password
      *
      * @param  {String}   oldPassword
      * @param  {String}   newPassword
      * @param  {Function} callback    - optional, function(error, user)
      * @return {Promise}
      */
-    changePassword(oldPassword, newPassword, callback) {
+    update(user, callback) {
+      var name = user.name,
+          gender = user.gender,
+          oldPassword = user.oldPassword,        
+          newPassword = user.newPassword;
+
+      console.log(name);    
+      console.log(gender);
+      console.log(oldPassword);
+      console.log(newPassword);
+
       return User.changePassword({ id: currentUser._id }, {
+        name: name,
+        gender: gender,
         oldPassword: oldPassword,
         newPassword: newPassword
       }, function() {

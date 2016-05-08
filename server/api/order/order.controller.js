@@ -54,8 +54,13 @@ function handleEntityNotFound(res) {
 }
 
 function handleError(res, statusCode) {
+  // if(err.message == 'Out of stock')
+  // console.log(err);
+  // statusCode = err.statusCode || statusCode || 500;
   statusCode = statusCode || 500;
   return function(err) {
+    console.log(err);
+    if(err.message == 'Out of stock') statusCode = 422;
     res.status(statusCode).send(err);
   };
 }

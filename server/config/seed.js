@@ -118,7 +118,7 @@ Catalog
           slug: 'ao-thun-1',
           imageUrl: '/assets/uploads/aothun-1.jpg',
           price: 150000,
-          stock: 10,
+          stock: 1,
           categories: [aothun]
         }, {
           _id: mongoose.Types.ObjectId('56f3e1fd37e1945010c36f02'),
@@ -435,6 +435,7 @@ User.find({}).removeAsync()
     User.createAsync({
       provider: 'local',
       name: 'Test User',
+      gender: true,
       email: 'test@example.com',
       password: 'test'
     }, {

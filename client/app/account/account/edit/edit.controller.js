@@ -1,34 +1,31 @@
 'use strict';
 
-class EditController {
-  constructor(Auth) {
-    this.errors = {};
-    this.submitted = false;
-
-    this.Auth = Auth;
-    this.user = {
-      name: Auth.getCurrentUser().name,
-      email: Auth.getCurrentUser().email
-    };
-    this.changePwd = false;
-  }
-
-  changePassword(form) {
-    this.submitted = true;
-
-    if (form.$valid) {
-      this.Auth.changePassword(this.user.oldPassword, this.user.newPassword)
-        .then(() => {
-          this.message = 'Password successfully changed.';
-        })
-        .catch(() => {
-          form.password.$setValidity('mongoose', false);
-          this.errors.other = 'Incorrect password';
-          this.message = '';
-        });
-    }
-  }
-}
-
 angular.module('dandelionApp')
-  .controller('EditController', EditController);
+  .controller('EditController', function($scope, Auth, User, Modal, $state) {
+
+    $scope.errors = {};
+    $scope.submitted = false;
+    $scope.changePwd = false;
+
+    $scope.user = {
+      name: Auth.getCurrentUser().name,
+      email: Auth.getCurrentUser().email,
+      gender: Auth.getCurrentUser().gender
+    };
+
+    $scope.updateInfo = function(form) {
+      $scope.submitted = true;
+      if (form.$valid) {
+        Auth.update($scope.user)
+          .then(function() {
+            Modal.confirm.logOut(() => {
+              $state.go('main');
+            })();
+          })
+          .catch(function() {
+            form.password.$setValidity('mongoose', false);
+            $scope.errors.other = 'Incorrect password';
+          });
+      }
+    };
+  });

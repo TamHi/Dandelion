@@ -82,22 +82,42 @@ export function destroy(req, res) {
  */
 export function changePassword(req, res, next) {
   var userId = req.user._id;
-  console.log(req.body.id)
-  var oldPass = String(req.body.oldPassword);
-  var newPass = String(req.body.newPassword);
-
+  // console.log(req.user._id);
+  var name = String(req.body.name);
+  var gender = req.body.gender;
+  if(req.body.oldPassword) {
+    var oldPass = String(req.body.oldPassword);
+    var newPass = String(req.body.newPassword);
+  }
+  // console.log(name)
+  // console.log(gender)
+  // console.log(oldPass)
+  // console.log(newPass)
   User.findByIdAsync(userId)
     .then(user => {
-      if (user.authenticate(oldPass)) {
-        user.password = newPass;
+      user.name = name;
+      user.gender = gender;
+
+      if(oldPass) {
+        if (user.authenticate(oldPass)) {
+          user.password = newPass;
+
+          return user.saveAsync()
+            .then(() => {
+              res.status(204).end();
+            })
+            .catch(validationError(res));
+        } else {
+          return res.status(403).end();
+        }
+      }
+      else {
         return user.saveAsync()
           .then(() => {
             res.status(204).end();
           })
-          .catch(validationError(res));
-      } else {
-        return res.status(403).end();
-      }
+          .catch(handleError(res));
+      } 
     });
 }
 

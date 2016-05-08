@@ -12,8 +12,7 @@ var UserSchema = new Schema({
   name: String,
   numAddresses: { type: Number, default: 0 },
   numOrders: { type: Number, default: 0 },
-  // gender: Boolean,
-  // birthday: Date,
+  gender: Boolean,
   email: {
     type: String,
     lowercase: true

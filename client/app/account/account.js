@@ -17,6 +17,16 @@ angular.module('dandelionApp')
         url: '/logout?referrer',
         referrer: 'main',
         template: '',
+        resolve: {
+          confirm: function($q, Modal) {
+            var deferred = $q.defer();
+
+            Modal.confirm.logOut(() => {
+              deferred.resolve(true);
+            })();
+            return deferred.promise;
+          }
+        },
         controller: function($rootScope, $state, Auth, ngCart, cart) {
           delete $rootScope.requiredAuthState;
           var referrer = $state.params.referrer ||
@@ -74,10 +84,10 @@ angular.module('dandelionApp')
           authenticate: true
         });
   })
-  .run(function($rootScope) {
+  .run(function($rootScope, Modal, $state) {
     $rootScope.$on('$stateChangeStart', function(event, next, nextParams, current) {
       if (next.name === 'logout' && current && current.name && !current.authenticate) {
-        next.referrer = current.name;
-      }
+          next.referrer = current.name;
+      } 
     });
   });

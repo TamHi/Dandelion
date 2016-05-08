@@ -14,9 +14,9 @@ angular.module('dandelionApp', [
   'ngFileUpload',
   'ngCart',
   'ngAside',
-  'angularSlideables',
   'underscore',
-  'slick'
+  'slick',
+  'frapontillo.bootstrap-switch'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

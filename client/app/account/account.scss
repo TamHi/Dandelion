@@ -1,3 +1,14 @@
+h2.title {
+  color: #FE980F;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 auto 30px;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 3;
+}
 .auth-form {
 	width: 600px;
 	margin: 0 auto;
@@ -108,3 +119,4 @@
 		}
 	}
 }
+

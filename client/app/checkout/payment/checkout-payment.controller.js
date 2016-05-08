@@ -49,7 +49,10 @@ angular.module('dandelionApp')
             console.log('Empty the cart');
             ngCart.empty();
             $state.go('products');
-          });
+          })
+          .catch(err => {
+            console.log(err);
+          }); 
   		}
   		else if (payload) {
   			$http.post('/api/orders', {
@@ -63,7 +66,10 @@ angular.module('dandelionApp')
   					console.log(res);
   					ngCart.empty();
             $state.go('products');
-  				});	
+  				})
+          .catch(err => {
+            console.log(err);
+          })
 		
         // $http.post('/api/orders', payload)
         //   .then(function (res) {

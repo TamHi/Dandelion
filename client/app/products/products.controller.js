@@ -25,12 +25,5 @@ angular.module('dandelionApp')
   })
 
   .controller('ProductViewCtrl', function($scope, $state, $stateParams, Product) {
-
-  	$scope.product = Product.get({id: $stateParams.id}, function(product) {
-      $scope.mainImageUrl = product.imageUrl[0];
-    });
-
-    $scope.setImage = function(imageUrl) {
-      $scope.mainImageUrl = imageUrl;
-    };
+  	$scope.product = Product.get({id: $stateParams.id});
   });

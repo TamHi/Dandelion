@@ -182,7 +182,20 @@
 .slick-list {
   width: 100%;
 
+
   img {
-    width: 170px;
+    display: block;
+    width: 90%;
+    margin: 0 auto;
   }
+}
+.slick-next {
+  right: -5px;
+}
+.slick-prev {
+  left: -5px;
+}
+.slick-next:before,
+.slick-prev:before {
+  color: black;
 }

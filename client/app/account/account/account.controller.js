@@ -2,7 +2,7 @@
 
 class AccountController {
   constructor(Auth) {
-    
+  	
   }
 }
 
