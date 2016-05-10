@@ -14,6 +14,7 @@ export default function(app) {
   app.use('/api/carts', require('./api/cart'));
   app.use('/api/orders', require('./api/order'));
   app.use('/api/braintree', require('./api/braintree'));
+  app.use('/api/statistic', require('./api/statistic'));
   app.use('/api/products', require('./api/product'));
   app.use('/api/users', require('./api/user'));
 

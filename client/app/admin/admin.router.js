@@ -21,7 +21,7 @@ angular.module('dandelionApp.admin')
           url: '/dashboard',
           // templateUrl: 'app/admin/customers/customers.html',
           templateUrl: 'app/admin/dashboard/dashboard.html',
-          // controller: 'AdminCustomersCtrl',
+          controller: 'AdminDashboardCtrl',
           authenticate: 'admin'
         })
 

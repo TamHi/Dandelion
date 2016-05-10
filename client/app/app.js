@@ -16,7 +16,8 @@ angular.module('dandelionApp', [
   'ngAside',
   'underscore',
   'slick',
-  'frapontillo.bootstrap-switch'
+  'frapontillo.bootstrap-switch',
+  'chart.js'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

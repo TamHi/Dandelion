@@ -11,8 +11,6 @@ angular.module('dandelionApp.auth')
       
 
       if (!next.authenticate) {
-        $rootScope.previousState = current.name;
-        // console.log(current.name);
         return;
       }
 
@@ -35,7 +33,6 @@ angular.module('dandelionApp.auth')
             return;
           }
 
-          $rootScope.requiredAuthState = next.name;
           // console.log(next.name);
           event.preventDefault();
           $state.go('login');

@@ -53,7 +53,7 @@
                   <td style="vertical-align:middle">{{order.total | currency:undefined:0}}</td>
                   <td style="vertical-align:middle">{{order.type | uppercase }}</td>
                   <td style="vertical-align:middle">
-                    <a ng-click="complete(order)" class="btn btn-success"><i class="fa fa-check"></i></a>
+                    <a ng-click="complete(order)" ng-hide="order.shippingStatus && order.paymentStatus" class="btn btn-success"><i class="fa fa-check"></i></a>
                     <a ng-click="delete(order)" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                   </td>
                 </tr>

@@ -11,7 +11,7 @@
 
 import _ from 'lodash';
 import Order from './order.model';
-import User from '../user/user.model';
+import Product from '../product/product.model';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -24,7 +24,15 @@ function respondWithResult(res, statusCode) {
 
 function saveUpdates(updates) {
   return function(entity) {
+    console.log('Updates');
+    console.log(updates);
+    console.log('Entity');
+    console.log(entity);
+
     var updated = _.merge(entity, updates);
+
+    console.log('Updated');
+    console.log(updated);
     return updated.saveAsync()
       .spread(updated => {
         return updated;
@@ -60,7 +68,7 @@ function handleError(res, statusCode) {
   statusCode = statusCode || 500;
   return function(err) {
     console.log(err);
-    if(err.message == 'Out of stock') statusCode = 422;
+    // if(err.message == 'Out of stock') statusCode = 422;
     res.status(statusCode).send(err);
   };
 }
@@ -97,22 +105,63 @@ export function show(req, res) {
     .catch(handleError(res));
 }
 
+var checkQuantity = function(items) {
+  var arrayLength = items.length;
+  console.log(arrayLength);
+
+  return new Promise(function(resolve, reject) {
+    var outOfStock = false;
+    var itemsProcessed = 0;
+
+    _.forEach(items, function(item) {
+      console.log('forEach');
+
+      Product.findByIdAsync(item.product, 'stock')
+        .then(product => {
+          itemsProcessed++;
+          console.log(product);
+          if(product.stock < item.quantity) {
+            console.log('Not save');
+            outOfStock = true;
+          }
+          if(itemsProcessed === arrayLength) {
+            console.log('End array');
+            resolve(outOfStock);
+          }
+        })
+    })
+  });
+};
 // Creates a new Order in the DB
 export function create(req, res) {
-  Order.createAsync({
-    user: req.user._id,
-    shippingAddress: req.body.shippingAddress,
-    items: req.body.items,
-    total: req.body.total,
-    type: req.body.type,
-    nonce: req.body.nonce
-  })
-    .then(respondWithResult(res, 201))
-    .catch(handleError(res));
+
+  checkQuantity(req.body.items)
+    .then(rs => {
+      if(!rs) {
+        console.log('Not out of stock');
+        Order.createAsync({
+          user: req.user._id,
+          shippingAddress: req.body.shippingAddress,
+          items: req.body.items,
+          total: req.body.total,
+          type: req.body.type,
+          nonce: req.body.nonce
+        })
+          .then(respondWithResult(res, 201))
+          .catch(handleError(res));
+      }
+      else {
+        console.log('Out of stock');
+        res.status(422).json({
+          message:'Out of stock'
+        });
+      }
+    })
 }
 
 // Updates an existing Order in the DB
 export function update(req, res) {
+  // console.log(req.body);
   if (req.body._id) {
     delete req.body._id;
   }

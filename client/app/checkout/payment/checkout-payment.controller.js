@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dandelionApp')
-  .controller('CheckoutPaymentCtrl', function($scope, Checkout, ngCart, token, $http, _, $state) {
+  .controller('CheckoutPaymentCtrl', function($scope, Checkout, ngCart, token, $http, _, $state, $cookies) {
   	$scope.paymentMethod = 'cash';
 
   	$scope.setupBraintree = function() {
@@ -18,9 +18,11 @@ angular.module('dandelionApp')
   	};
 
   	$scope.teardownBraintree = function() {
-  		$scope.checkout.teardown(function() {
-  			$scope.checkout = null;
-  		})
+      if($scope.checkout){
+        $scope.checkout.teardown(function() {
+          $scope.checkout = null;
+        })
+      }
   	};
 	  	
 
@@ -35,11 +37,9 @@ angular.module('dandelionApp')
 				})
 			});
 
-			// console.log(items);
-
   		if($scope.paymentMethod === 'cash') {
   			$http.post('/api/orders', {
-  				shippingAddress: Checkout.getAddress()._id,
+  				shippingAddress: $scope.$parent.chosenAddress,
   				items: items,
   				type: 'Cash',
   				total: ngCart.totalCost()
@@ -47,16 +47,20 @@ angular.module('dandelionApp')
   				.then((res) => {
             console.log(res);
             console.log('Empty the cart');
+            $cookies.remove('chosenAddress');
             ngCart.empty();
             $state.go('products');
           })
           .catch(err => {
             console.log(err);
+            if(err.data.message === 'Out of stock'){
+              alert('Out of stock');
+            }
           }); 
   		}
   		else if (payload) {
   			$http.post('/api/orders', {
-  				shippingAddress: Checkout.getAddress()._id,
+  				shippingAddress: $scope.$parent.chosenAddress,
   				items: items,
   				type: payload.type,
   				total: ngCart.totalCost(),
@@ -64,22 +68,16 @@ angular.module('dandelionApp')
   			})
   				.then((res) => { 
   					console.log(res);
+            $cookies.remove('chosenAddress');
   					ngCart.empty();
             $state.go('products');
   				})
           .catch(err => {
             console.log(err);
+            if(err.data.message === 'Out of stock'){
+              alert('Out of stock');
+            }
           })
-		
-        // $http.post('/api/orders', payload)
-        //   .then(function (res) {
-        //     console.log(res.data);
-        //     ngCart.empty(true);
-        //     $state.go('products');
-        //   })
-        //   .catch(function(res) {
-        //     $scope.errors = res;
-        //   })
 		  }
     };
   });

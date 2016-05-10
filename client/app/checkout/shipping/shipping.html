@@ -1,7 +1,7 @@
 <h2 class="title text-center">Địa chỉ giao hàng</h2>
 
-<div class="dashboard-address">
-	<!-- <p class="new-address"><a ui-sref="account.createAddress"><i class="fa fa-plus-square-o"></i> <strong>Thêm địa chỉ mới</strong></a></p> -->
+<div class="dashboard-address" ng-show="addresses.length">
+	<p class="new-address"><a ui-sref="account.createAddress"><i class="fa fa-plus-square-o"></i> <strong>Thêm địa chỉ mới</strong></a></p>
 	<div class="col-md-6" ng-repeat="address in addresses | orderBy:'-default'">
 		<div class="panel panel-default address"  ng-class="{default: address.default}">
 			<p><strong>{{ address.name }}</strong></p>
@@ -9,11 +9,15 @@
 			<p>Điện thoại: {{address.phone}}</p>
 			
 			<div class="button-group">
-				<a class="btn btn-default btn-choose-address" ng-class="{'chosen-address': address.default}" ng-click="chooseAddress(address._id)">Giao đến địa chỉ này</a>			
-				<!-- <a ui-sref="account.editAddress({id: address._id})" class="btn btn-default">Sửa</a>
-				<a ng-click="delete(address._id)" class="btn btn-default" ng-hide="address.default">Xóa</a> -->
+				<!-- <a class="btn btn-default btn-choose-address" ng-class="{'chosen-address': address.default}" ng-click="chooseAddress(address._id)">Giao đến địa chỉ này</a> -->		
+				<a class="btn btn-default btn-choose-address" ng-class="{'chosen-address': address.default}" ng-click="chooseAddress(address)">Giao đến địa chỉ này</a>	
 			</div>
 			<span ng-if="address.default">Mặc định</span>
 		</div>
 	</div>
+</div>
+
+<div ng-hide="addresses.length">
+	<p>Bạn chưa có địa chỉ nào</p>
+	<p class="new-address"><a ui-sref="account.createAddress"><i class="fa fa-plus-square-o"></i> <strong>Thêm địa chỉ mới</strong></a></p>
 </div>

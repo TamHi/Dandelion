@@ -19,7 +19,7 @@
   <div class="col-md-8">
     <h1>{{product.name}}</h1>
     <p>{{product.description}}</p>
-    <p>{{product.stock}}</p>
+    <p><strong>Tồn kho: </strong>{{product.stock}}</p>
     <ngcart-addtocart ng-if="product.stock"
                     id="{{product._id}}" 
                     name="{{product.name}}" 

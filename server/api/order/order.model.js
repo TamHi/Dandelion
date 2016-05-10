@@ -79,51 +79,59 @@ var OrderSchema = new mongoose.Schema({
 OrderSchema
   .pre('save', function(next) {
     this.wasNew = this.isNew;
+    console.log('Pre save order');
+    console.log(this);
 
-    _.forEach(this.items, function(item) {
-      Product.findByIdAsync(item.product, 'stock')
-        .then(product => {
-          console.log('Foreach item');
-          console.log(product);
-          if(product.stock < item.quantity) {
-            console.log('Not save');
-            // done(null, false, {message: 'Out of stock', statusCode: 422});
-            next(new Error('Out of stock'));
-          }
-          else {
-            console.log('Save');
+    if(this.isNew) {
+      _.forEach(this.items, function(item) {
+        Product.findByIdAsync(item.product, 'stock')
+          .then(product => {
+            console.log(item.quantity);
             var diff = -item.quantity;
             Product.update({_id: product._id}, {$inc: {stock: diff}}).exec();
-            next();
-          }
-        })
-        .catch(err => {
-          next(err);
-        })
-    });
-
-    // next();
+          })
+          .catch(err => {
+            next(err);
+          })
+      });
+    }
+    next();
   })
 
   .post('save', function(doc) {
+    console.log('Post save order');
+    console.log(doc);
     if(this.wasNew) {
       User.update({_id: doc.user}, {$inc: {numOrders: 1}}).exec();
     }
   })
   .post('remove', function(doc) {
     // console.log('Remove');
+    _.forEach(doc.items, function(item) {
+      Product.findByIdAsync(item.product, 'stock')
+        .then(product => {
+          console.log(item.quantity);
+          var diff = item.quantity;
+          Product.update({_id: product._id}, {$inc: {stock: diff}}).exec();
+        })
+        .catch(err => {
+          next(err);
+        })
+    });
+
     User.update({_id: doc.user}, {$inc: {numOrders: -1}}).exec();
   })
 
 
 OrderSchema.pre('validate', function (next) {
-  // console.log('Validate');
+  console.log('Validate');
 
-  if(!this.nonce) { return next(); }
+  // console.log(this.isNew);
+  if(!this.nonce || !this.isNew) { return next(); }
   executePayment(this, function (err, result) {
-
+    // console.log(result);
     // console.log(result.success);
-    this.paymentStatus = result;
+    this.paymentStatus = result.success;
     if(err || !result.success){
       this.paymentStatus = false;
       next(err || result.errors);

@@ -1,1 +1,72 @@
-DASHBOARD
+<!-- <div class="row">
+	<select ng-model="selectedTime" ng-options="t.value as t.label for t in time"></select>
+</div> -->
+
+<div class="row">
+
+	<div class="col-lg-3 col-md-6 col-xs-12">
+		<div class="widget">
+			<div class="widget-body">
+				<div class="widget-content">
+					<div class="widget-icon green pull-left">
+						<i class="fa fa-users"></i>
+					</div>
+					<div class="title">{{customer}}</div>
+					<div class="comment">Khách hàng</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-lg-3 col-md-6 col-xs-12">
+		<div class="widget">
+			<div class="widget-body">
+				<div class="widget-content">
+					<div class="widget-icon red pull-left">
+						<i class="fa fa-gift"></i>
+					</div>
+					<div class="title">{{product}}</div>
+					<div class="comment">Sản phẩm</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-lg-3 col-md-6 col-xs-12">
+		<div class="widget">
+			<div class="widget-body">
+				<div class="widget-content">
+					<div class="widget-icon orange pull-left">
+						<i class="fa fa-shopping-cart"></i>
+					</div>
+					<div class="title">{{order}}</div>
+					<div class="comment">Đơn hàng</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-lg-3 col-md-6 col-xs-12">
+		<div class="widget">
+			<div class="widget-body">
+				<div class="widget-content">
+					<div class="widget-icon blue pull-left">
+						<i class="fa fa-money"></i>
+					</div>
+					<div class="title" style="font-size: 21px; margin-bottom: 8px">{{ total | currency:undefined:0 }}</div>
+					<div class="comment">Tổng thu nhập</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-md-10" style="float: none; margin: 0 auto">
+		<canvas id="line" class="chart chart-line" chart-data="data"
+		  chart-labels="labels" chart-legend="true" chart-series="series"
+		  chart-click="onClick">
+		</canvas> 
+	</div>
+</div>

@@ -26,20 +26,14 @@ angular.module('dandelionApp')
         return this.address;
       },
 
-      setAddress: function(id) {
+      getAddress: function(id) {
         this.address = _.find(this.addresses, function(address) {
           return address._id === id;
         });
 
         // console.log(this.address);
         return this.address;
-      },
-
-      getAddress: function() {
-        // console.log(this.address);
-        return this.address;
       }
-
     };
 
     return checkout;

@@ -2,7 +2,7 @@
 
 angular.module('dandelionApp')
   .controller('CreateAddressesController', function($scope, Auth, $http, Address, $state) {
-  	$scope.address = new Object;
+  	$scope.address = {};
 
   	$scope.createAddress = function() {
   		// console.log('Create');

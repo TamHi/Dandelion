@@ -8,19 +8,21 @@
 
         <div class="form-group" ng-class="{ 'has-success': form.name.$valid && vm.submitted,
                                             'has-error': form.name.$invalid && vm.submitted }">
-          <label class="control-label col-sm-4">Họ tên</label>
+          <label class="control-label col-sm-3">Họ tên</label>
           
           <div class="col-sm-6">
             <input type="text" name="name" class="form-control" ng-model="vm.user.name"
                    required/>
+          </div>
+          <div class="col-sm-3">
             <p class="help-block" ng-show="form.name.$error.required && vm.submitted">
-              Bạn chưa điền họ tên
+              * Bắt buộc
             </p>
-          </div>  
+          </div>
         </div>
 
         <div class="form-group">
-          <label class="control-label col-sm-4">Giới tính</label>
+          <label class="control-label col-sm-3">Giới tính</label>
           <div class="col-sm-6">
             <input bs-switch ng-model="vm.user.gender" type="checkbox" switch-on-text="Nam" switch-off-text="Nữ">
           </div>
@@ -28,36 +30,40 @@
 
         <div class="form-group" ng-class="{ 'has-success': form.email.$valid && vm.submitted,
                                             'has-error': form.email.$invalid && vm.submitted }">
-          <label class="control-label col-sm-4">Email</label>
+          <label class="control-label col-sm-3">Email</label>
           
           <div class="col-sm-6">
             <input type="email" name="email" class="form-control" ng-model="vm.user.email"
                    required
                    mongoose-error/>
+          </div>
+          <div class="col-sm-3">
             <p class="help-block" ng-show="form.email.$error.email && vm.submitted">
-              Email không hợp lệ
+              * Email không hợp lệ
             </p>
             <p class="help-block" ng-show="form.email.$error.required && vm.submitted">
-              Bạn chưa điền email
+              * Bắt buộc
             </p>
             <p class="help-block" ng-show="form.email.$error.mongoose">
-              {{ vm.errors.email }}
+              * {{ vm.errors.email }}
             </p>
           </div>
         </div>
 
         <div class="form-group" ng-class="{ 'has-success': form.password.$valid && vm.submitted,
                                             'has-error': form.password.$invalid && vm.submitted }">
-          <label class="control-label col-sm-4">Mật khẩu</label>
+          <label class="control-label col-sm-3">Mật khẩu</label>
           
           <div class="col-sm-6">
             <input type="password" name="password" class="form-control" ng-model="vm.user.password"
                    ng-minlength="3"
                    required
                    mongoose-error/>
+          </div>
+          <div class="col-sm-3">
             <p class="help-block"
                ng-show="(form.password.$error.minlength || form.password.$error.required) && vm.submitted">
-              Mật khẩu phải có ít nhất 3 ký tự
+              * Ít nhất 3 ký tự
             </p>
             <p class="help-block" ng-show="form.password.$error.mongoose">
               {{ vm.errors.password }}
@@ -67,15 +73,17 @@
 
         <div class="form-group" ng-class="{ 'has-success': form.confirmPassword.$valid && vm.submitted,
                                             'has-error': form.confirmPassword.$invalid && vm.submitted }">
-          <label class="control-label col-sm-4">Nhập lại mật khẩu</label>
+          <label class="control-label col-sm-3">Nhập lại</label>
           
           <div class="col-sm-6">
             <input type="password" name="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword"
                    match="vm.user.password"
                    ng-minlength="3" required/>
+          </div>
+          <div class="col-sm-3">
             <p class="help-block"
                ng-show="form.confirmPassword.$error.match && vm.submitted">
-              Mật khẩu nhập lại không trùng khớp
+              * Không trùng khớp
             </p>
           </div>
         </div>

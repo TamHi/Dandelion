@@ -8,10 +8,10 @@
 		  <label><input type="radio" ng-model="paymentMethod" value="cash" ng-click="teardownBraintree()">Thanh toán tiền mặt khi nhận hàng</label>
 		</div>
 		<div class="radio">
-		  <label><input type="radio" ng-model="paymentMethod" value="braintree" ng-click="setupBraintree()">Braintree</label>
+		  <label><input type="radio" ng-model="paymentMethod" value="braintree" ng-click="setupBraintree()">Thẻ ATM / Paypal</label>
 		</div>
     
-    <div id="braintree-form" class="row" ng-class="paymentMethod">
+    <div ng-show="paymentMethod === 'braintree'" id="braintree-form" class="row" ng-class="paymentMethod">
     	<div class="col-md-8">
     		<div id="checkout" method="post" action="/checkout">
 	        <div id="payment-form"></div>

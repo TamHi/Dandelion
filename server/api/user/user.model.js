@@ -67,7 +67,7 @@ UserSchema
       return true;
     }
     return email.length;
-  }, 'Email cannot be blank');
+  }, 'Bạn chưa điển email');
 
 // Validate empty password
 UserSchema
@@ -77,7 +77,7 @@ UserSchema
       return true;
     }
     return password.length;
-  }, 'Password cannot be blank');
+  }, 'Bạn chưa điền mật khẩu');
 
 // Validate email is not taken
 UserSchema
@@ -97,7 +97,7 @@ UserSchema
       .catch(function(err) {
         throw err;
       });
-  }, 'The specified email address is already in use.');
+  }, 'Email đã được sử dụng.');
 
 var validatePresenceOf = function(value) {
   return value && value.length;
@@ -117,7 +117,7 @@ UserSchema
     }
 
     if (!validatePresenceOf(this.password) && authTypes.indexOf(this.provider) === -1) {
-      next(new Error('Invalid password'));
+      next(new Error('Mật khẩu không hợp lệ'));
     }
 
     // Make salt with a callback

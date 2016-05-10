@@ -31,7 +31,17 @@ angular.module('dandelionApp.admin')
       console.log(order);
       order.shippingStatus = true;
       order.paymentStatus = true;
-      Order.update({id: order._id}, order);
+      var data = {
+        shippingStatus: true,
+        paymentStatus: true
+      };
+      
+      Order.update({id: order._id}, data).$promise.then((order) => {
+        console.log(order);
+      })
+      .catch(() => {
+        console.log('failed');
+      })
     });
 
     $scope.delete = Modal.confirm.delete((order) => {

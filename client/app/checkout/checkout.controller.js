@@ -1,14 +1,16 @@
 'use strict';
 
 angular.module('dandelionApp')
-  .controller('CheckoutCtrl', function($scope, Auth, Checkout) {
+  .controller('CheckoutCtrl', function($scope, Auth, Checkout, $cookies) {
     Checkout.queryAddress()
       .then((res) => {
         $scope.addresses = res;
-        $scope.chosenAddress = Checkout.getDefaultAddress();
+        if($cookies.get('chosenAddress')){
+          $scope.chosenAddress = Checkout.getAddress($cookies.get('chosenAddress'));
+        }
+        else {
+          console.log('No cookies');
+          $scope.chosenAddress = Checkout.getDefaultAddress();
+        }
       });
-    
-    $scope.$on('choose-address', function() {
-      $scope.chosenAddress = Checkout.getAddress();
-    });
   });

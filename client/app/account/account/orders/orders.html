@@ -1,1 +1,44 @@
-Orders
+<h2 class="title text-center">Danh sách đơn hàng</h2>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th width="10%" ng-click="order('createAt')">Thời gian</th>
+      <th width="15%">Họ tên</th>
+      <th width="5%">SĐT</th>
+      <th width="25%">Địa chỉ</th>
+      <th width="5%" ng-click="order('shippingStatus')">Giao hàng</th>
+      <th width="5%" ng-click="order('paymentStatus')">Thanh toán</th>
+      <th width="5%" ng-click="order('items.length')">Sản phẩm</th>
+      <th width="10%" ng-click="order('total')">Tổng cộng</th>
+      <th width="10%" ng-click="order('type')">Phương thức</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="order in orders | orderBy:predicate:reverse | filter:query">
+      <td style="vertical-align:middle">{{order.createAt | date: 'short'}}</td>
+      <td style="vertical-align:middle">{{order.shippingAddress.name}}</td>
+      <td style="vertical-align:middle">{{order.shippingAddress.phone}}</td>
+      <td style="vertical-align:middle">
+        {{order.shippingAddress.street}}, {{order.shippingAddress.ward.title}}, {{order.shippingAddress.district.title}}, {{order.shippingAddress.city.title}}
+      </td>
+      <td style="vertical-align:middle">
+        <span ng-show="order.shippingStatus">Xong</span>
+        <span ng-hide="order.shippingStatus">Chưa</span>
+      </td>
+      <td style="vertical-align:middle">
+        <span ng-show="order.paymentStatus">Xong</span>
+        <span ng-hide="order.paymentStatus">Chưa</span>
+      </td>
+      <td style="vertical-align:middle">
+        <a href="" ng-click="openModal(order._id)">{{order.items.length}}</a>
+      </td>
+      <td style="vertical-align:middle">{{order.total | currency:undefined:0}}</td>
+      <td style="vertical-align:middle">{{order.type | uppercase }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<script type="text/ng-template" id="OrderItems.html">
+  <order-items></order-items>
+</script>

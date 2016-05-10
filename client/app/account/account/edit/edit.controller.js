@@ -10,7 +10,7 @@ angular.module('dandelionApp')
     $scope.user = {
       name: Auth.getCurrentUser().name,
       email: Auth.getCurrentUser().email,
-      gender: Auth.getCurrentUser().gender
+      gender: Auth.getCurrentUser().gender || true
     };
 
     $scope.updateInfo = function(form) {

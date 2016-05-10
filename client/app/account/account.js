@@ -35,7 +35,14 @@ angular.module('dandelionApp')
           Auth.logout();
           cart.unsubscribe();
           ngCart.empty(true);
-          $state.go(referrer);
+          console.log(referrer);
+          if(referrer === 'viewProduct') {
+            $state.go('products');
+          }
+          else {
+            $state.go(referrer);  
+          }
+          
         }
       })
       .state('signup', {
@@ -75,7 +82,7 @@ angular.module('dandelionApp')
           url: '/address/edit/:id',
           templateUrl: 'app/account/account/addresses/edit/edit.html',
           controller: 'EditAddressesController',
-          authenticate: true,
+          authenticate: true
         })
         .state('account.orders', {
           url: '/orders',

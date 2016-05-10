@@ -1,12 +1,11 @@
 'use strict';
 
 angular.module('dandelionApp')
-  .controller('CheckoutShippingCtrl', function($rootScope, $scope, Auth, Checkout, $state) {
+  .controller('CheckoutShippingCtrl', function($scope, Checkout, $state, $cookies) {
 
-  	$scope.chooseAddress = function(id) {
-  		$state.go('checkout.payment').then(() => {
-  			Checkout.setAddress(id);
-	  		$rootScope.$broadcast('choose-address');
-  		});
+  	$scope.chooseAddress = function(addr) {
+  		$cookies.put('chosenAddress', addr._id);
+  		$scope.$parent.chosenAddress = Checkout.getAddress($cookies.get('chosenAddress'));
+  		$state.go('checkout.payment');
   	}
   });
